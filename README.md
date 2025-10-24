@@ -89,7 +89,7 @@ Absolutely not. It’s just summarizing and flagging text that looks odd. You st
 No. Everything happens locally. Nothing leaves your machine unless you explicitly make it leave.
 
 **How accurate is it?**  
-Pretty decent. It’s not perfect, but it’ll catch the stuff that stands out: arbitration, vague language, data-sharing lines, and similar patterns.
+Pretty decent. I’m not running benchmark datasets on this just yet since, honestly, I’m not getting paid and it’s not exactly a career booster right now. It’s not perfect, but it catches the stuff that stands out: arbitration, vague language, data sharing, and similar patterns. 
 
 **Why make this at all?**  
 Because nobody reads these documents, and yet we agree to them every day. TOSCheck is just one small way to make that habit a little less blind.
