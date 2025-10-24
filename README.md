@@ -67,7 +67,7 @@ If you share something by accident, that’s on you, not the app.
 ### FAQ
 
 **Does this replace a lawyer?**  
-No. It just helps you decide what to ask a lawyer about.
+No. It just helps you decide what to ask a lawyer(if you can afford one with this economy...) about.
 
 **Will it make me $1000 for reading terms?**  
 Unlikely. But it might save you from agreeing to something you don’t want.
