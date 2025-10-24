@@ -33,15 +33,27 @@ New apps, new APIs, new “we value your privacy” pop-ups — all of them say 
 TOSCheck is just a small push toward paying attention again.
 
 ---
-
 ### What it might flag
 
 **Input**
 > “We may change these terms at any time without notice. We may share your information with partners. Disputes will be handled by binding arbitration.”
 
-**Output**
+**Output**  
 Unilateral changes, Data sharing, Arbitration.  
 That’s it — short, direct, and exactly what you need to know.
+
+TOSCheck doesn’t just summarize at random. It uses an LLM (via Ollama or your configured model) to read through the text line by line, score each sentence for keywords and legal patterns, and then cite the lines that triggered a flag.  
+
+It looks for things like:
+- **Unilateral authority** — phrases that mean the company can change the rules whenever they want.  
+- **Data collection & sharing** — anything involving “third parties,” “partners,” or “affiliates.”  
+- **Binding arbitration or waiver of rights** — clauses that remove your ability to sue or join a class action.  
+- **Undefined or vague permissions** — lines that say things like “we may use your information for purposes deemed appropriate.”  
+- **Opt-out tricks** — sections that technically let you refuse something but hide how.  
+
+When it flags something, TOSCheck will show the **reason** (like “Data sharing”) and **where** in the text it found it, so you can read it yourself instead of trusting a summary.  
+
+It doesn’t editorialize or make moral judgments — it just points at the weird parts so you can decide what matters.
 
 ---
 
