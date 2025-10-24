@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="TOSCheck_logo.png" alt="TOSCheck Logo" width="200"/>
+  <img src="images/TOSCheck_logo.png" alt="TOSCheck Logo" width="200"/>
 </p>
 
 # TOSCheck
