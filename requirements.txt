@@ -1,5 +1,8 @@
-requests
-rich
-ollama
-
-
+ollama>=0.3.0
+rich>=13.7.0
+python-dotenv>=1.0.1
+nltk>=3.9
+PyYAML>=6.0.1
+trafilatura>=1.8.0
+pypdf>=5.0.0
+urllib3>=2.2.0

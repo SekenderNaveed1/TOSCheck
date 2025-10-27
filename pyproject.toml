@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "toscheck"
+version = "0.1.0"
+description = "TOS & Privacy Policy flagger (local-first, Ollama-friendly)"
+authors = [{name="You"}]
+requires-python = ">=3.10"
+dependencies = []
+
+
+[project.scripts]
+toscheck = "toscheck.cli:app"
