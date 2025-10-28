@@ -216,7 +216,7 @@ Each run follows six key stages:
 ### 🔄 System Architecture
 
 <p align="center">
-  <img src="images/toscheck_system_flowchart.png" alt="TOSCheck System Flowchart" width="600"/>
+  <img src="images/toscheck_system_flow.png" alt="TOSCheck System Flowchart" width="600"/>
 </p>
 
 This visual shows the entire processing flow from document input → embedding → pattern matching → LLM reasoning → report generation.
