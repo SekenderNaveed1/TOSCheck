@@ -195,7 +195,7 @@ Creates Markdown and JSON reports with flagged clauses, matched patterns, summar
 This diagram shows how the whole thing fits together — from text extraction and embedding to pattern matching, reasoning, and report generation.
 
 <p align="center">
-  <img src="Diagram_for_TOS_Check.pdf alt="TOSCheck System Flowchart" width="600"/>
+  <img src="Diagram_for_TOS_Check.png alt="TOSCheck System Flowchart" width="600"/>
 </p>
 
 ## Design Notes
