@@ -2,8 +2,7 @@
   {
     "category": "Arbitration / class-action waiver",
     "sentence_indexes": [
-      3,
-      4
+      3
     ],
     "rationale": "Semantic match to exemplars ≥0.82."
   },
@@ -34,13 +33,6 @@
       13
     ],
     "rationale": "Semantic match to exemplars ≥0.82."
-  },
-  {
-    "category": "Data sharing / sale",
-    "sentence_indexes": [
-      3
-    ],
-    "rationale": "Sharing with partners/affiliates."
   },
   {
     "category": "Indemnification",
@@ -81,13 +73,6 @@
     "category": "Opt-out hard to find",
     "sentence_indexes": [
       21
-    ],
-    "rationale": "Semantic match to exemplars ≥0.82."
-  },
-  {
-    "category": "Price / fee changes",
-    "sentence_indexes": [
-      10
     ],
     "rationale": "Semantic match to exemplars ≥0.82."
   },

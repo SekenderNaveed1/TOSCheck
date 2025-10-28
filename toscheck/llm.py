@@ -1,14 +1,48 @@
 from __future__ import annotations
-import json, re, time
+import json, re, time, os
 from typing import List, Dict, Optional, Tuple
 import ollama
 from .utils import MODEL, NUM_CTX, TEMPERATURE, TOP_P
 from .patterns import CATEGORIES, PATTERNS
 
+# ------------------------
+# Stable, fast Ollama call
+# ------------------------
+def _ollama_chat(messages, model=MODEL, num_predict=96):
+    """Fast, bounded-generation call for classification/polish prompts."""
+    options = {
+        "num_ctx": min(NUM_CTX or 2048, 2048),
+        "num_predict": num_predict,  # short generations = fast
+        "temperature": 0.0,          # deterministic explanations
+        "top_p": 0.9,
+        "format": "json",
+    }
+    try:
+        options["num_thread"] = max(1, os.cpu_count() or 1)
+    except Exception:
+        pass
+    # older Ollama clients don't support timeout
+    try:
+        return ollama.chat(
+            model=model,
+            messages=messages,
+            options=options,
+            timeout=60,
+            stream=False,
+        )
+    except TypeError:
+        return ollama.chat(
+            model=model,
+            messages=messages,
+            options=options,
+            stream=False,
+        )
+
 SYSTEM = (
     "You are TOSCheck, a terse compliance spotter. "
-    "Use ONLY the provided categories. Be precise; if none apply, return []. "
-    "Output MUST be a JSON list (no prose)."
+    "Use ONLY the provided categories exactly as written. "
+    "Be precise; if none apply, return an empty JSON list []. "
+    "Output MUST be a JSON list (no prose outside JSON)."
 )
 
 FEW_SHOT = """
@@ -19,9 +53,9 @@ Sentences:
 
 Expected JSON:
 [
-  {"category": "Unilateral changes", "sentence_indexes": [0], "rationale": "Terms may be changed without notice."},
-  {"category": "Data sharing / sale", "sentence_indexes": [1], "rationale": "Sharing with partners/affiliates."},
-  {"category": "Arbitration / class-action waiver", "sentence_indexes": [2], "rationale": "Arbitration + class-action waiver."}
+  {"category": "Unilateral changes", "sentence_indexes": [0], "rationale": "Company can change terms without notifying you."},
+  {"category": "Data sharing / sale", "sentence_indexes": [1], "rationale": "Mentions sharing with partners/affiliates."},
+  {"category": "Arbitration / class-action waiver", "sentence_indexes": [2], "rationale": "Forces arbitration and forbids class actions."}
 ]
 """
 
@@ -35,14 +69,19 @@ Categories (use exact names):
 
 {few_shot}
 
-Return ONLY a JSON list like:
+Return ONLY a JSON list with objects like:
 [
   {{
     "category": "<one of the above>",
     "sentence_indexes": [<ints>],
-    "rationale": "<short reason>"
+    "rationale": "<short reason in plain English>"
   }}
 ]
+
+Rules:
+- Only include categories that clearly apply.
+- Cite the exact numbers from the provided Sentences list.
+- Do not invent sentences or categories.
 
 Sentences:
 {sentences}
@@ -60,6 +99,7 @@ def _parse_numbered(ns: List[str]) -> List[Tuple[int, str]]:
             out.append((int(m.group(1)), m.group(2)))
     return out
 
+# --- lightweight regex heuristic layer (fast pre/post checks)
 def heuristic_flags_all(numbered_sentences: List[str]) -> List[Dict]:
     pairs = _parse_numbered(numbered_sentences)
     by_cat: Dict[str, set] = {cat: set() for cat in CATEGORIES}
@@ -73,7 +113,7 @@ def heuristic_flags_all(numbered_sentences: List[str]) -> List[Dict]:
             out.append({
                 "category": cat,
                 "sentence_indexes": sorted(idxs),
-                "rationale": "Matched policy heuristics."
+                "rationale": "Heuristic match to policy patterns."
             })
     return out
 
@@ -85,13 +125,13 @@ def infer_flags(numbered_sentences: List[str], debug: bool = False, llm_only: bo
     )
     llm_flags: List[Dict] = []
     for attempt in range(2):
-        res = ollama.chat(
+        res = _ollama_chat(
+            messages=[{"role": "system", "content": SYSTEM},
+                      {"role": "user", "content": prompt}],
             model=MODEL,
-            messages=[{"role":"system","content":SYSTEM},{"role":"user","content":prompt}],
-            options={"num_ctx": NUM_CTX, "temperature": 0.0, "top_p": TOP_P, "format": "json"},
-            stream=False,
+            num_predict=128
         )
-        txt = res["message"]["content"]
+        txt = (res.get("message", {}) or {}).get("content", "")
         if debug:
             print("----- DEBUG model raw -----")
             print(txt)
@@ -117,8 +157,10 @@ def infer_flags(numbered_sentences: List[str], debug: bool = False, llm_only: bo
                 continue
 
     if llm_only:
+        # return only what the LLM said (rationales are already human-language)
         return llm_flags
 
+    # combine with heuristics (keeps recall high; merge code will clean later)
     heur = heuristic_flags_all(numbered_sentences)
     bucket: Dict[str, set] = {}
     note: Dict[str, str] = {}
@@ -137,11 +179,11 @@ def infer_flags(numbered_sentences: List[str], debug: bool = False, llm_only: bo
 # ---- LLM rationale polisher (keeps categories & indexes) ----
 REFINE_SYSTEM = (
     "You are TOSCheck. Improve rationales for flagged clauses concisely. "
-    "Do not change categories or indexes. Output JSON list with same objects."
+    "Do not change categories or indexes. Output JSON list with same objects only."
 )
 
 REFINE_USER_TMPL = """You will receive the original sentences and a list of flags.
-For each flag, keep the same "category" and "sentence_indexes". Only rewrite "rationale" into a short, clear reason (<= 14 words).
+For each flag, keep the same "category" and "sentence_indexes". Only rewrite "rationale" into a short, clear reason (<= 18 words).
 Return ONLY a JSON list.
 
 Sentences:
@@ -157,15 +199,14 @@ def llm_refine_rationales(sentences: List[str], flags: List[Dict]) -> List[Dict]
     numbered = [f"{i}: {sentences[i]}" for i in range(len(sentences))]
     payload = json.dumps(flags, ensure_ascii=False)
     prompt = REFINE_USER_TMPL.format(sentences="\n".join(numbered), flags=payload)
-    res = ollama.chat(
-        model=MODEL,
-        messages=[{"role":"system","content":REFINE_SYSTEM},{"role":"user","content":prompt}],
-        options={"num_ctx": NUM_CTX, "temperature": 0.0, "top_p": TOP_P, "format": "json"},
-        stream=False,
-    )
-    txt = res["message"]["content"].strip()
-    # try parse robustly
     try:
+        res = _ollama_chat(
+            messages=[{"role": "system", "content": REFINE_SYSTEM},
+                      {"role": "user", "content": prompt}],
+            model=MODEL,
+            num_predict=128
+        )
+        txt = (res.get("message", {}) or {}).get("content", "").strip()
         data = json.loads(txt)
         if isinstance(data, list):
             # keep evidence if model dropped it
@@ -174,7 +215,7 @@ def llm_refine_rationales(sentences: List[str], flags: List[Dict]) -> List[Dict]
             for f in data:
                 cat = f.get("category")
                 idxs = f.get("sentence_indexes", [])
-                rat = f.get("rationale", "")
+                rat = (f.get("rationale") or "").strip()
                 base = by_key.get((cat, tuple(idxs)))
                 if base:
                     merged = dict(base)

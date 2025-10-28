@@ -1,85 +1,58 @@
 from __future__ import annotations
-import os, hashlib
-from typing import List, Dict
-import numpy as np
-import ollama
-import yaml
-from .utils import EMBED_MODEL
+from typing import List, Dict, Tuple
+from .patterns import PATTERNS  # dict: {category: List[compiled_regex]}
 
-def _cache_dir() -> str:
-    base = os.path.join(os.path.expanduser("~"), ".toscheck_cache", "emb", EMBED_MODEL.replace("/", "_"))
-    os.makedirs(base, exist_ok=True)
-    return base
+def _score_sentence(sent: str) -> List[Tuple[str, int]]:
+    """
+    Return list of (category, hits) for this sentence based on regex patterns.
+    """
+    hits: List[Tuple[str, int]] = []
+    for cat, regs in PATTERNS.items():
+        cnt = sum(1 for r in regs if r.search(sent))
+        if cnt > 0:
+            hits.append((cat, cnt))
+    return hits
 
-def _key(text: str) -> str:
-    return hashlib.sha1(text.strip().encode("utf-8", errors="ignore")).hexdigest()
+def rag_select(
+    sentences: List[str],
+    threshold: float = 0.75,     # kept for API compatibility (not used by regex preselect)
+    max_suspects: int = 120
+) -> List[Dict]:
+    """
+    Heuristic/RAG-like preselection:
+      - scores each sentence by how many category regexes hit
+      - picks up to max_suspects top sentences
+      - groups selected sentences by category
 
-def _load_cached(text: str) -> np.ndarray | None:
-    path = os.path.join(_cache_dir(), _key(text) + ".npy")
-    if os.path.exists(path):
-        try:
-            v = np.load(path).astype(np.float32)
-            n = np.linalg.norm(v) + 1e-12
-            return v / n
-        except Exception:
-            return None
-    return None
+    Returns a list of dicts:
+      {"category": <str>, "sentence_indexes": [ints], "rationale": <str>, "_src": "heuristic"}
+    """
+    # 1) score each sentence
+    per_idx_hits: List[Tuple[int, int, List[str]]] = []  # (idx, total_hits, cats)
+    for i, s in enumerate(sentences):
+        hits = _score_sentence(s)
+        if hits:
+            total = sum(c for _, c in hits)
+            cats = [cat for cat, _ in hits]
+            per_idx_hits.append((i, total, cats))
 
-def _save_cached(text: str, vec: np.ndarray) -> None:
-    path = os.path.join(_cache_dir(), _key(text) + ".npy")
-    try:
-        np.save(path, vec.astype(np.float32))
-    except Exception:
-        pass
+    # 2) choose up to max_suspects by total hit count (desc), stable by index
+    per_idx_hits.sort(key=lambda x: (-x[1], x[0]))
+    chosen = per_idx_hits[:max_suspects]
 
-def _embed_one(text: str) -> np.ndarray:
-    cached = _load_cached(text)
-    if cached is not None:
-        return cached
-    r = ollama.embeddings(model=EMBED_MODEL, prompt=text)
-    v = np.array(r["embedding"], dtype=np.float32)
-    n = np.linalg.norm(v) + 1e-12
-    v = v / n
-    _save_cached(text, v)
-    return v
+    # 3) group by category
+    by_cat: Dict[str, List[int]] = {}
+    for i, _score, cats in chosen:
+        for cat in cats:
+            by_cat.setdefault(cat, []).append(i)
 
-def embed_texts(texts: List[str]) -> np.ndarray:
-    if not texts:
-        return np.zeros((0, 768), dtype=np.float32)
-    vecs = [_embed_one(t) for t in texts]
-    return np.vstack(vecs)
-
-def cosine_sim(A: np.ndarray, B: np.ndarray) -> np.ndarray:
-    return A @ B.T
-
-def load_seeds(path: str) -> Dict[str, List[str]]:
-    with open(path, "r", encoding="utf-8") as f:
-        data = yaml.safe_load(f) or {}
-    out: Dict[str, List[str]] = {}
-    for k, v in data.items():
-        if isinstance(v, list):
-            out[k] = [str(x).strip() for x in v if isinstance(x, (str, int, float))]
-    return out
-
-def rag_flag(sentences: List[str], seeds: Dict[str, List[str]], threshold: float = 0.75) -> List[Dict]:
-    sents = [s.strip() for s in sentences if s.strip()]
-    if not sents:
-        return []
-    S = embed_texts(sents)
-
-    flags: List[Dict] = []
-    for cat, examples in seeds.items():
-        if not examples:
-            continue
-        E = embed_texts(examples)
-        sims = cosine_sim(S, E)      # n_sent x n_ex
-        best = sims.max(axis=1)      # best seed similarity per sentence
-        hits = np.where(best >= threshold)[0].tolist()
-        if not hits:
-            continue
-        flags.append({
+    # 4) build output
+    out: List[Dict] = []
+    for cat, idxs in by_cat.items():
+        out.append({
             "category": cat,
-            "sentence_indexes": hits,
-            "rationale": f"Semantic match to exemplars ≥{threshold}.",
+            "sentence_indexes": sorted(set(idxs)),
+            "rationale": "Preselected by policy pattern match.",
+            "_src": "heuristic",
         })
-    return flags
+    return out

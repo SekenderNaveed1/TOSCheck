@@ -7,7 +7,6 @@
 **Cited Sentences:**
 
 - (3) You waive any right to participate in a class action or jury trial.
-- (4) We may terminate your account at our sole discretion, for any reason or no reason at all.
 
 ---
 
@@ -48,16 +47,6 @@
 **Cited Sentences:**
 
 - (13) We collect personal information including your location, camera, and microphone data to improve our services.
-
----
-
-## Data sharing / sale
-
-**Rationale:** Sharing with partners/affiliates.
-
-**Cited Sentences:**
-
-- (3) You waive any right to participate in a class action or jury trial.
 
 ---
 
@@ -118,16 +107,6 @@
 **Cited Sentences:**
 
 - (21) If you wish to opt out, please print and mail a written request to our office.
-
----
-
-## Price / fee changes
-
-**Rationale:** Semantic match to exemplars ≥0.82.
-
-**Cited Sentences:**
-
-- (10) We reserve the right to increase prices or fees with or without notice.
 
 ---
 
