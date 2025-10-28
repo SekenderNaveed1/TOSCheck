@@ -19,21 +19,9 @@ Sentences:
 
 Expected JSON:
 [
-  {
-    "category": "Unilateral changes",
-    "sentence_indexes": [0],
-    "rationale": "Terms may be changed without notice."
-  },
-  {
-    "category": "Data sharing / sale",
-    "sentence_indexes": [1],
-    "rationale": "Sharing with partners/affiliates."
-  },
-  {
-    "category": "Arbitration / class-action waiver",
-    "sentence_indexes": [2],
-    "rationale": "Binding arbitration and class-action waiver."
-  }
+  {"category": "Unilateral changes", "sentence_indexes": [0], "rationale": "Terms may be changed without notice."},
+  {"category": "Data sharing / sale", "sentence_indexes": [1], "rationale": "Sharing with partners/affiliates."},
+  {"category": "Arbitration / class-action waiver", "sentence_indexes": [2], "rationale": "Arbitration + class-action waiver."}
 ]
 """
 
@@ -73,7 +61,6 @@ def _parse_numbered(ns: List[str]) -> List[Tuple[int, str]]:
     return out
 
 def heuristic_flags_all(numbered_sentences: List[str]) -> List[Dict]:
-    """Heuristics-only flags across ALL numbered sentences."""
     pairs = _parse_numbered(numbered_sentences)
     by_cat: Dict[str, set] = {cat: set() for cat in CATEGORIES}
     for idx, sent in pairs:
@@ -96,7 +83,6 @@ def infer_flags(numbered_sentences: List[str], debug: bool = False, llm_only: bo
         few_shot=FEW_SHOT,
         sentences="\n".join(numbered_sentences),
     )
-    # LLM pass
     llm_flags: List[Dict] = []
     for attempt in range(2):
         res = ollama.chat(
@@ -133,7 +119,6 @@ def infer_flags(numbered_sentences: List[str], debug: bool = False, llm_only: bo
     if llm_only:
         return llm_flags
 
-    # Heuristics over the same slice + union
     heur = heuristic_flags_all(numbered_sentences)
     bucket: Dict[str, set] = {}
     note: Dict[str, str] = {}
@@ -148,3 +133,56 @@ def infer_flags(numbered_sentences: List[str], debug: bool = False, llm_only: bo
                 note[cat] = f.get("rationale", "")
     return [{"category": c, "sentence_indexes": sorted(idxs), "rationale": note.get(c, "")}
             for c, idxs in bucket.items()]
+
+# ---- LLM rationale polisher (keeps categories & indexes) ----
+REFINE_SYSTEM = (
+    "You are TOSCheck. Improve rationales for flagged clauses concisely. "
+    "Do not change categories or indexes. Output JSON list with same objects."
+)
+
+REFINE_USER_TMPL = """You will receive the original sentences and a list of flags.
+For each flag, keep the same "category" and "sentence_indexes". Only rewrite "rationale" into a short, clear reason (<= 14 words).
+Return ONLY a JSON list.
+
+Sentences:
+{sentences}
+
+Flags:
+{flags}
+"""
+
+def llm_refine_rationales(sentences: List[str], flags: List[Dict]) -> List[Dict]:
+    if not flags:
+        return flags
+    numbered = [f"{i}: {sentences[i]}" for i in range(len(sentences))]
+    payload = json.dumps(flags, ensure_ascii=False)
+    prompt = REFINE_USER_TMPL.format(sentences="\n".join(numbered), flags=payload)
+    res = ollama.chat(
+        model=MODEL,
+        messages=[{"role":"system","content":REFINE_SYSTEM},{"role":"user","content":prompt}],
+        options={"num_ctx": NUM_CTX, "temperature": 0.0, "top_p": TOP_P, "format": "json"},
+        stream=False,
+    )
+    txt = res["message"]["content"].strip()
+    # try parse robustly
+    try:
+        data = json.loads(txt)
+        if isinstance(data, list):
+            # keep evidence if model dropped it
+            by_key = {(f["category"], tuple(f["sentence_indexes"])): f for f in flags}
+            out = []
+            for f in data:
+                cat = f.get("category")
+                idxs = f.get("sentence_indexes", [])
+                rat = f.get("rationale", "")
+                base = by_key.get((cat, tuple(idxs)))
+                if base:
+                    merged = dict(base)
+                    merged["rationale"] = rat or base.get("rationale", "")
+                    out.append(merged)
+                else:
+                    out.append(f)
+            return out
+    except Exception:
+        pass
+    return flags

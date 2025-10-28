@@ -1,0 +1,159 @@
+[
+  {
+    "category": "Unilateral changes",
+    "sentence_indexes": [
+      0
+    ],
+    "rationale": "Semantic match to exemplars ≥0.72."
+  },
+  {
+    "category": "Arbitration / class-action waiver",
+    "sentence_indexes": [
+      2,
+      3
+    ],
+    "rationale": "Semantic match to exemplars ≥0.72."
+  },
+  {
+    "category": "Governing law / venue",
+    "sentence_indexes": [
+      2
+    ],
+    "rationale": "Semantic match to exemplars ≥0.72."
+  },
+  {
+    "category": "Termination for convenience",
+    "sentence_indexes": [
+      4
+    ],
+    "rationale": "Semantic match to exemplars ≥0.72."
+  },
+  {
+    "category": "Warranty disclaimer",
+    "sentence_indexes": [
+      5
+    ],
+    "rationale": "Semantic match to exemplars ≥0.72."
+  },
+  {
+    "category": "Limitation of liability",
+    "sentence_indexes": [
+      6
+    ],
+    "rationale": "Semantic match to exemplars ≥0.72."
+  },
+  {
+    "category": "Indemnification",
+    "sentence_indexes": [
+      7
+    ],
+    "rationale": "Semantic match to exemplars ≥0.72."
+  },
+  {
+    "category": "Automatic renewal / negative option",
+    "sentence_indexes": [
+      8
+    ],
+    "rationale": "Semantic match to exemplars ≥0.72."
+  },
+  {
+    "category": "Price / fee changes",
+    "sentence_indexes": [
+      10
+    ],
+    "rationale": "Semantic match to exemplars ≥0.72."
+  },
+  {
+    "category": "Refund exclusions",
+    "sentence_indexes": [
+      11
+    ],
+    "rationale": "Semantic match to exemplars ≥0.72."
+  },
+  {
+    "category": "Broad license to user content",
+    "sentence_indexes": [
+      12
+    ],
+    "rationale": "Semantic match to exemplars ≥0.72."
+  },
+  {
+    "category": "Data collection (personal)",
+    "sentence_indexes": [
+      13
+    ],
+    "rationale": "Semantic match to exemplars ≥0.72."
+  },
+  {
+    "category": "Location / device data",
+    "sentence_indexes": [
+      13
+    ],
+    "rationale": "Semantic match to exemplars ≥0.72."
+  },
+  {
+    "category": "Data sharing / sale",
+    "sentence_indexes": [
+      14,
+      15
+    ],
+    "rationale": "Semantic match to exemplars ≥0.72."
+  },
+  {
+    "category": "Targeted ads / profiling",
+    "sentence_indexes": [
+      14
+    ],
+    "rationale": "Semantic match to exemplars ≥0.72."
+  },
+  {
+    "category": "Third-party trackers / cookies",
+    "sentence_indexes": [
+      16,
+      17
+    ],
+    "rationale": "Semantic match to exemplars ≥0.72."
+  },
+  {
+    "category": "International transfers",
+    "sentence_indexes": [
+      18
+    ],
+    "rationale": "Semantic match to exemplars ≥0.72."
+  },
+  {
+    "category": "Data retention / deletion",
+    "sentence_indexes": [
+      19
+    ],
+    "rationale": "Semantic match to exemplars ≥0.72."
+  },
+  {
+    "category": "User rights (GDPR/CCPA/CPRA)",
+    "sentence_indexes": [
+      20
+    ],
+    "rationale": "Semantic match to exemplars ≥0.72."
+  },
+  {
+    "category": "Children's data (COPPA / minors)",
+    "sentence_indexes": [
+      23
+    ],
+    "rationale": "Semantic match to exemplars ≥0.72."
+  },
+  {
+    "category": "Notice by posting only",
+    "sentence_indexes": [
+      22
+    ],
+    "rationale": "Semantic match to exemplars ≥0.72."
+  },
+  {
+    "category": "Opt-out hard to find",
+    "sentence_indexes": [
+      21
+    ],
+    "rationale": "Semantic match to exemplars ≥0.72."
+  }
+]

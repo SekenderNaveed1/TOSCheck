@@ -2,7 +2,7 @@
 
 ## Unilateral changes
 
-**Rationale:** 
+**Rationale:** Semantic match to exemplars ≥0.72.
 
 **Cited Sentences:**
 
@@ -12,7 +12,7 @@
 
 ## Arbitration / class-action waiver
 
-**Rationale:** 
+**Rationale:** Semantic match to exemplars ≥0.72.
 
 **Cited Sentences:**
 
@@ -23,7 +23,7 @@
 
 ## Governing law / venue
 
-**Rationale:** 
+**Rationale:** Semantic match to exemplars ≥0.72.
 
 **Cited Sentences:**
 
@@ -33,7 +33,7 @@
 
 ## Termination for convenience
 
-**Rationale:** 
+**Rationale:** Semantic match to exemplars ≥0.72.
 
 **Cited Sentences:**
 
@@ -43,7 +43,7 @@
 
 ## Warranty disclaimer
 
-**Rationale:** 
+**Rationale:** Semantic match to exemplars ≥0.72.
 
 **Cited Sentences:**
 
@@ -53,7 +53,7 @@
 
 ## Limitation of liability
 
-**Rationale:** 
+**Rationale:** Semantic match to exemplars ≥0.72.
 
 **Cited Sentences:**
 
@@ -63,7 +63,7 @@
 
 ## Indemnification
 
-**Rationale:** 
+**Rationale:** Semantic match to exemplars ≥0.72.
 
 **Cited Sentences:**
 
@@ -73,7 +73,7 @@
 
 ## Automatic renewal / negative option
 
-**Rationale:** 
+**Rationale:** Semantic match to exemplars ≥0.72.
 
 **Cited Sentences:**
 
@@ -83,7 +83,7 @@
 
 ## Price / fee changes
 
-**Rationale:** 
+**Rationale:** Semantic match to exemplars ≥0.72.
 
 **Cited Sentences:**
 
@@ -93,7 +93,7 @@
 
 ## Refund exclusions
 
-**Rationale:** 
+**Rationale:** Semantic match to exemplars ≥0.72.
 
 **Cited Sentences:**
 
@@ -103,7 +103,7 @@
 
 ## Broad license to user content
 
-**Rationale:** 
+**Rationale:** Semantic match to exemplars ≥0.72.
 
 **Cited Sentences:**
 
@@ -113,7 +113,7 @@
 
 ## Data collection (personal)
 
-**Rationale:** 
+**Rationale:** Semantic match to exemplars ≥0.72.
 
 **Cited Sentences:**
 
@@ -123,7 +123,7 @@
 
 ## Location / device data
 
-**Rationale:** 
+**Rationale:** Semantic match to exemplars ≥0.72.
 
 **Cited Sentences:**
 
@@ -133,7 +133,7 @@
 
 ## Data sharing / sale
 
-**Rationale:** 
+**Rationale:** Semantic match to exemplars ≥0.72.
 
 **Cited Sentences:**
 
@@ -144,7 +144,7 @@
 
 ## Targeted ads / profiling
 
-**Rationale:** 
+**Rationale:** Semantic match to exemplars ≥0.72.
 
 **Cited Sentences:**
 
@@ -154,7 +154,7 @@
 
 ## Third-party trackers / cookies
 
-**Rationale:** 
+**Rationale:** Semantic match to exemplars ≥0.72.
 
 **Cited Sentences:**
 
@@ -165,7 +165,7 @@
 
 ## International transfers
 
-**Rationale:** 
+**Rationale:** Semantic match to exemplars ≥0.72.
 
 **Cited Sentences:**
 
@@ -175,7 +175,7 @@
 
 ## Data retention / deletion
 
-**Rationale:** 
+**Rationale:** Semantic match to exemplars ≥0.72.
 
 **Cited Sentences:**
 
@@ -185,7 +185,7 @@
 
 ## User rights (GDPR/CCPA/CPRA)
 
-**Rationale:** 
+**Rationale:** Semantic match to exemplars ≥0.72.
 
 **Cited Sentences:**
 
@@ -195,7 +195,7 @@
 
 ## Children's data (COPPA / minors)
 
-**Rationale:** 
+**Rationale:** Semantic match to exemplars ≥0.72.
 
 **Cited Sentences:**
 
@@ -205,7 +205,7 @@
 
 ## Notice by posting only
 
-**Rationale:** 
+**Rationale:** Semantic match to exemplars ≥0.72.
 
 **Cited Sentences:**
 
@@ -215,7 +215,7 @@
 
 ## Opt-out hard to find
 
-**Rationale:** 
+**Rationale:** Semantic match to exemplars ≥0.72.
 
 **Cited Sentences:**
 
