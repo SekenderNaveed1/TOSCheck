@@ -1,88 +1,71 @@
-from __future__ import annotations
-from typing import List, Dict
-from rich.console import Console
-from rich.table import Table
+# toscheck/report.py
 import json
+from datetime import datetime
 
-console = Console()
+def write_outputs(query: str, hits: list[dict], answer: str, json_path: str | None, md_path: str | None):
+    if json_path:
+        with open(json_path, "w") as f:
+            json.dump({
+                "query": query,
+                "generated_at": datetime.utcnow().isoformat() + "Z",
+                "answer": answer,
+                "hits": hits
+            }, f, indent=2)
 
-CANNED_RATIONALES = {
-    "Unilateral changes": "Terms can be changed without notice/consent.",
-    "Arbitration / class-action waiver": "Binding arbitration and/or class action/jury waiver.",
-    "Governing law / venue": "Specifies governing law or exclusive venue.",
-    "Termination for convenience": "Account can be terminated at any time/sole discretion.",
-    "Warranty disclaimer": "Service provided “as is” / no warranties.",
-    "Limitation of liability": "Liability capped or excludes consequential damages.",
-    "Indemnification": "You must indemnify/hold provider harmless.",
-    "Automatic renewal / negative option": "Auto-renews unless canceled (negative option).",
-    "Cancellation hurdles": "Cancellation requires friction (e.g., call, mail, business hours).",
-    "Price / fee changes": "Provider may change prices/fees.",
-    "Refund exclusions": "Payments/fees are non-refundable.",
-    "Broad license to user content": "Perpetual/worldwide/royalty-free license to your content.",
-    "Data collection (personal)": "Collects personal information.",
-    "Sensitive data / biometrics": "Processes sensitive/biometric/health data.",
-    "Location / device data": "Accesses location/camera/mic/device data.",
-    "Data sharing / sale": "Shares/sells personal data with partners/third parties.",
-    "Targeted ads / profiling": "Uses data for targeted advertising or profiling.",
-    "Third-party trackers / cookies": "Uses third-party cookies/pixels/SDKs; may not honor DNT.",
-    "International transfers": "Transfers data internationally/outside your region.",
-    "Data retention / deletion": "Retains data for long periods; deletion caveats.",
-    "User rights (GDPR/CCPA/CPRA)": "Lists access/delete/opt-out/portability rights.",
-    "Children's data (COPPA / minors)": "Restrictions or consent requirements for minors.",
-    "Notice by posting only": "Changes announced only by posting on a page.",
-    "Opt-out hard to find": "Opt-out requires friction (mail/print/fax).",
-}
+    if md_path:
+        with open(md_path, "w") as f:
+            f.write(f"# Answer\n\n{answer}\n\n")
+            f.write("## Retrieved Chunks\n\n")
+            for h in hits:
+                idx = h.get("idx")
+                score = h.get("score", 0.0)
+                chunk = h.get("chunk", "")
+                f.write(f"### [{idx}] (score {score:.3f})\n\n{chunk}\n\n---\n")
 
-def print_header(model: str, n_sentences: int):
-    console.print("╭──────────────────────────────────────╮")
-    console.print(f"│ Model: {model}  |  Sentences: {n_sentences:<5} │")
-    console.print("╰──────────────────────────────────────╯")
 
-def _friendly_rationale(cat: str, raw: str | None) -> str:
-    raw = (raw or "").strip()
-    return raw if raw else CANNED_RATIONALES.get(cat, "—")
+def write_explanations(query: str, explanations: list[dict], json_path: str | None, md_path: str | None):
+    payload = {
+        "query": query,
+        "generated_at": datetime.utcnow().isoformat() + "Z",
+        "explanations": explanations,
+    }
 
-def render_flags(sentences: List[str], flags: List[Dict]):
-    if not flags:
-        console.print("✅ No flags detected in the scanned chunk.")
-        return
-    table = Table(title="TOSCheck Flags")
-    table.add_column("Category", no_wrap=True)
-    table.add_column("Cited Sentences")
-    table.add_column("Rationale", no_wrap=True)
-    for f in flags:
-        cat = f.get("category", "Unknown")
-        rat = _friendly_rationale(cat, f.get("rationale"))
-        cited_lines = []
-        for idx in f.get("sentence_indexes", []):
-            if 0 <= idx < len(sentences):
-                cited_lines.append(f"{idx}. {sentences[idx]}")
-        table.add_row(cat, "\n".join(cited_lines), rat)
-    console.print(table)
+    if json_path:
+        with open(json_path, "w") as f:
+            json.dump(payload, f, indent=2)
 
-def save_report(sentences: List[str], flags: List[Dict], out_path: str):
-    with open(out_path, "w", encoding="utf-8") as f:
-        f.write("# TOSCheck Report\n\n")
-        for fdict in flags:
-            cat = fdict.get("category", "Unknown")
-            f.write(f"## {cat}\n\n")
-            f.write(f"**Rationale:** {_friendly_rationale(cat, fdict.get('rationale'))}\n\n")
-            f.write("**Cited Sentences:**\n\n")
-            for idx in fdict.get("sentence_indexes", []):
-                if 0 <= idx < len(sentences):
-                    f.write(f"- ({idx}) {sentences[idx]}\n")
-            ev = fdict.get("evidence") or []
-            if ev:
-                f.write("\n**Evidence (RAG seeds):**\n\n")
-                for e in ev:
-                    idx = e.get("sentence_index")
-                    seed = e.get("matched_seed", "")
-                    sim = e.get("similarity", 0.0)
-                    f.write(f"- sentence {idx}: seed = \"{seed}\" (sim {sim:.2f})\n")
-            f.write("\n---\n\n")
-    console.print(f":page_facing_up: Saved markdown report → {out_path}")
+    if md_path:
+        with open(md_path, "w") as f:
+            f.write(f"# Explanation Results\n\n")
+            f.write(f"_Query:_ **{query}**\n\n")
+            for n, item in enumerate(explanations, 1):
+                clause = item.get("clause", "")
+                ans = item.get("answer", "")
+                pats = item.get("patterns", [])
 
-def save_json(flags: List[Dict], out_path: str):
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(flags, f, ensure_ascii=False, indent=2)
-    console.print(f":floppy_disk: Saved JSON → {out_path}")
+                # try to extract category hint from the LLM's last line
+                likely_cat = ""
+                for line in ans.splitlines()[::-1]:
+                    if "Likely category:" in line:
+                        likely_cat = line.strip()
+                        break
+
+                title = f"## Clause {n}"
+                if likely_cat:
+                    title += f" — {likely_cat.replace('Likely category:','').strip()}"
+                f.write(title + "\n\n")
+
+                f.write(f"**Clause text:**\n\n> {clause}\n\n")
+                f.write(f"**Matched patterns from KB:**\n\n")
+                if not pats:
+                    f.write("- (no close KB matches)\n\n")
+                else:
+                    for p in pats:
+                        idx = p.get("idx")
+                        score = p.get("score", 0.0)
+                        chunk = p.get("chunk", "")
+                        # show only first 500 chars for readability
+                        display = chunk[:500] + ("…" if len(chunk) > 500 else "")
+                        f.write(f"- **[{idx}]** (score {score:.3f}) — {display}\n")
+                f.write("\n**Explanation:**\n\n")
+                f.write(ans + "\n\n---\n")

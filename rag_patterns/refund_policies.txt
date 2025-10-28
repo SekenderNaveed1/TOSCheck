@@ -1,0 +1,36 @@
+# CATEGORY: PAYMENTS, REFUNDS & AUTO-RENEWAL
+# PURPOSE: Catch no-refund terms, silent auto-renewals, mid-term price changes, chargeback bans, unilateral billing.
+# SIGNALS: “non-refundable”, “auto-renew”, “at our discretion”, “price changes”, “chargeback”, “proration”.
+
+## Canonical risky patterns
+- "**All fees are non-refundable**," including outages or early cancellation.
+  → No recourse for failed service.
+- "Subscriptions **auto-renew** unless canceled **in writing** in advance."
+  → Friction to cancel; surprise charges.
+- "We may **change prices at any time** without notice."
+  → Lack of transparency; consumer law issues.
+- "**Chargebacks** are prohibited; disputes must be handled **internally**."
+  → Removes card network protections.
+- "We may **suspend/terminate service** for any reason without refund."
+  → One-sided power.
+
+## Examples (realistic)
+1) "All payments are **non-refundable**, including unused portions."
+2) "Your subscription **automatically renews** each month until canceled."
+3) "We may **modify fees** upon posting updates to our website."
+4) "You agree **not to initiate a chargeback** with your card issuer."
+
+## Heuristics / detection cues
+- Billing in “Payment Terms,” “Subscriptions,” “Cancellations.”
+- Unclear cancellation mechanics (email/fax only, short windows).
+- Vague price-change language with no notice period.
+
+## Risk notes / legal references (non-legal-advice)
+- US: State auto-renewal laws (e.g., California ARL), FTC negative option rule proposals.
+- EU: Consumer Rights Directive (pre-contract info, withdrawal rights).
+
+## Mitigations / reader guidance
+- Require **clear cancellation** paths and **advance notice** of price changes.
+- Offer **pro-rated refunds** for downtime; define SLA credits.
+- Keep **chargeback rights** intact or provide robust independent ADR.
+

@@ -1,0 +1,34 @@
+# CATEGORY: USER CONTENT RIGHTS & LICENSES
+# PURPOSE: Detect perpetual/irrevocable licenses, sublicensing, marketing use of UGC, moral rights waivers, takedown power.
+# SIGNALS: “perpetual”, “irrevocable”, “worldwide”, “royalty-free”, “sublicensable”, “assignable”, “marketing”, “derivative works”.
+
+## Canonical risky patterns
+- "By uploading, you grant a **perpetual, worldwide, irrevocable, royalty-free, sublicensable** license."
+  → Extremely broad; persists after account deletion.
+- "We may **use, modify, adapt, publish, translate, distribute** your content for any purpose."
+  → Marketing usage; derivative works without compensation.
+- "You **waive moral rights** and agree we can edit/remove your content."
+  → Loss of attribution/integrity rights in some jurisdictions.
+- "We can **commercialize** user submissions and **transfer** rights to third parties."
+  → Downstream use outside original context.
+
+## Examples (realistic)
+1) "You grant us a **perpetual, worldwide license** to **use, reproduce, adapt, and distribute** your submissions."
+2) "We may use user content for **promotional and advertising** purposes."
+3) "We may **edit or remove** any content at our discretion, with no obligation to notify you."
+4) "You **waive any moral rights** in your content to the extent permitted by law."
+
+## Heuristics / detection cues
+- Look for license clusters (perpetual/worldwide/royalty-free/sublicensable).
+- Marketing/promo clauses near community/UGC sections.
+- Check if license terminates when content is deleted (often not).
+
+## Risk notes / legal references (non-legal-advice)
+- Copyright, moral rights (jurisdiction-specific, e.g., EU).
+- Publicity rights (use of name/likeness in ads).
+
+## Mitigations / reader guidance
+- Prefer a **limited, revocable** license for operation of the service only.
+- Explicit **opt-out** of marketing usage; allow content deletion to withdraw license.
+- B2B: negotiate a **purpose-bound** license with termination.
+

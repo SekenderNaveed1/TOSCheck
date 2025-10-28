@@ -1,0 +1,33 @@
+# CATEGORY: SURVEILLANCE, MONITORING & RECORDING
+# PURPOSE: Identify invasive tracking, keylogging, screen capture, audio/video recording, employee/consumer monitoring.
+# SIGNALS: “monitor”, “record”, “keystrokes”, “screen capture”, “telemetry”, “behavioral data”, “AI training”.
+
+## Canonical risky patterns
+- "We **monitor** user activity, including **messages**, **browsing**, **keystrokes**, or **screen contents**."
+  → Highly invasive; consent/notice requirements vary.
+- "We **record audio/video** for **quality**/**training** purposes."
+  → Sensitive data capture; retention/usage unclear.
+- "We collect **telemetry** including app usage, device identifiers, installed software."
+  → Profiling risk; cross-device tracking.
+- "Data may be used to **train AI models**."
+  → Potentially broad reuse beyond original purpose.
+
+## Examples (realistic)
+1) "We may **record calls and video sessions** to improve service quality."
+2) "We employ **fraud detection** that includes monitoring **keyboard/mouse activity**."
+3) "We collect **screen analytics** and **session replays**."
+
+## Heuristics / detection cues
+- Found in Privacy Policy or “Monitoring” sections; check EULA clauses for workplace tools.
+- Words like “session replay,” “behavioral analytics,” “RUM,” “telemetry.”
+
+## Risk notes / legal references (non-legal-advice)
+- Wiretap/recording consent laws (one-party vs. two-party states).
+- GDPR: transparency, purpose limitation, DPIAs for high-risk processing.
+- Workplace monitoring: specific laws and notice requirements.
+
+## Mitigations / reader guidance
+- Provide **explicit opt-in** for recordings; clear retention limits.
+- Disable highly invasive trackers by default; allow **per-feature consent**.
+- Separate **training data** from operational data with opt-outs.
+

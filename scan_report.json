@@ -1,0 +1,116 @@
+{
+  "query": "Full risk review",
+  "generated_at": "2025-10-28T23:24:29.276553Z",
+  "explanations": [
+    {
+      "clause_idx": 0,
+      "clause": "We may change these Terms at any time without prior notice or consent. Your continued use of the service means you accept any updated terms. The governing law will be the State of Delaware, and disputes must be resolved through binding arbitration. You waive any right to participate in a class action or jury trial. We may terminate your account at our sole discretion, for any reason or no reason at all. The service is provided \u201cas is\u201d without any warranties of any kind. We are not responsible for indirect, incidental, or consequential damages. You agree to indemnify and hold us harmless from any claims arising out of your use.",
+      "patterns": [
+        {
+          "idx": 3,
+          "score": 0.6908411979675293,
+          "chunk": "## Examples (realistic)\n1) \"Any dispute arising from these Terms will be settled by **binding arbitration** in **Delaware** under the **AAA Consumer Rules**. **You waive any right to a jury trial**.\"\n2) \"You agree **not to pursue or participate in any class, collective, or representative action**.\"\n3) \"The **governing law** is **California**, and the **exclusive forum** is **San Mateo County, CA**.\"\n4) \"We may **update our arbitration procedures** and **designate the arbitrator** in our sole discretion.\"\n5) \"Users may **opt out of arbitration within 30 days** by sending a signed letter to [address].\""
+        },
+        {
+          "idx": 32,
+          "score": 0.6438661217689514,
+          "chunk": "## Canonical risky patterns\n- \"We may **modify these terms at any time** **without notice**.\"\n  \u2192 Users bound to unseen changes; transparency issue.\n- \"Continued use constitutes **acceptance** of updates.\"\n  \u2192 Passive consent; users may miss changes.\n- \"We may **suspend or terminate** service/account **at our sole discretion**.\"\n  \u2192 No cause required; risk of sudden loss.\n- \"We may **remove features** or **discontinue services** at any time, without liability.\"\n  \u2192 Business continuity risk.\n- \"Changes may apply **retroactively**.\"\n  \u2192 Past behavior suddenly judged by new rules."
+        },
+        {
+          "idx": 20,
+          "score": 0.6257675886154175,
+          "chunk": "## Canonical risky patterns\n- \"**All fees are non-refundable**,\" including outages or early cancellation.\n  \u2192 No recourse for failed service.\n- \"Subscriptions **auto-renew** unless canceled **in writing** in advance.\"\n  \u2192 Friction to cancel; surprise charges.\n- \"We may **change prices at any time** without notice.\"\n  \u2192 Lack of transparency; consumer law issues.\n- \"**Chargebacks** are prohibited; disputes must be handled **internally**.\"\n  \u2192 Removes card network protections.\n- \"We may **suspend/terminate service** for any reason without refund.\"\n  \u2192 One-sided power."
+        }
+      ],
+      "answer": "**Summary:** This Terms of Service clause allows the company to unilaterally change its terms without notice or consent from users. Users are required to accept any updated terms by continuing to use the service, and disputes will be resolved through binding arbitration in Delaware.\n\n**Risks and Implications:**\n\n* **Lack of transparency**: \"We may change these Terms at any time without prior notice or consent.\" (Pattern 1)\n* **Passive consent**: \"Your continued use of the service means you accept any updated terms.\" (Pattern 2)\n* **No cause required for termination**: \"We may terminate your account at our sole discretion, for any reason or no reason at all.\" (Pattern 4)\n* **Binding arbitration**: \"The governing law will be the State of Delaware, and disputes must be resolved through binding arbitration. You waive any right to participate in a class action or jury trial.\" (Patterns 1 and 2)\n* **Indemnification**: \"You agree to indemnify and hold us harmless from any claims arising out of your use.\"\n* **No warranties or liability for indirect damages**: \"The service is provided \u201cas is\u201d without any warranties of any kind. We are not responsible for indirect, incidental, or consequential damages.\"\n\n**Likely category:** Consumer Law/Arbitration"
+    },
+    {
+      "clause_idx": 1,
+      "clause": "Subscriptions automatically renew each month unless canceled in writing via postal mail. Free trials will automatically convert to paid plans unless you cancel before renewal. We reserve the right to increase prices or fees with or without notice. All payments are non-refundable. By uploading content, you grant us a perpetual, worldwide, royalty-free, and irrevocable license to use, modify, and distribute your submissions.",
+      "patterns": [
+        {
+          "idx": 21,
+          "score": 0.7047853469848633,
+          "chunk": "## Examples (realistic)\n1) \"All payments are **non-refundable**, including unused portions.\"\n2) \"Your subscription **automatically renews** each month until canceled.\"\n3) \"We may **modify fees** upon posting updates to our website.\"\n4) \"You agree **not to initiate a chargeback** with your card issuer.\""
+        },
+        {
+          "idx": 9,
+          "score": 0.7033215761184692,
+          "chunk": "## Examples (realistic)\n1) \"You grant us a **perpetual, worldwide license** to **use, reproduce, adapt, and distribute** your submissions.\"\n2) \"We may use user content for **promotional and advertising** purposes.\"\n3) \"We may **edit or remove** any content at our discretion, with no obligation to notify you.\"\n4) \"You **waive any moral rights** in your content to the extent permitted by law.\""
+        },
+        {
+          "idx": 11,
+          "score": 0.6381721496582031,
+          "chunk": "## Mitigations / reader guidance\n- Prefer a **limited, revocable** license for operation of the service only.\n- Explicit **opt-out** of marketing usage; allow content deletion to withdraw license.\n- B2B: negotiate a **purpose-bound** license with termination. ### FILE: data_collection.txt"
+        }
+      ],
+      "answer": "**Summary:** This Terms of Service clause outlines the automatic renewal of subscriptions and free trials, non-refundable payments, price increases without notice, and a perpetual license to use user content. The clause also grants the company broad rights to modify or distribute user submissions.\n\n**Risks/Implications:**\n\n* **Automatic Renewal**: \"Subscriptions automatically renew each month unless canceled in writing via postal mail.\" (Pattern 1) This means users may unintentionally continue paying for a service they no longer want.\n* **Non-Refundable Payments**: \"All payments are non-refundable.\" (Pattern 0) Users will not receive refunds, even if they cancel their subscription or do not use the service.\n* **Price Increases Without Notice**: \"We reserve the right to increase prices or fees with or without notice.\" (Pattern 3) The company can raise prices at any time, without informing users in advance.\n* **Perpetual License to User Content**: \"By uploading content, you grant us a perpetual, worldwide, royalty-free, and irrevocable license to use, modify, and distribute your submissions.\" (Pattern [1] 1) The company has permanent rights to use, modify, and distribute user-submitted content without restrictions.\n\n**Likely category:** Consumer/Subscription Service"
+    },
+    {
+      "clause_idx": 2,
+      "clause": "We collect personal information including your location, camera, and microphone data to improve our services. We may share this data with third-party partners and affiliates for analytics and targeted advertising. We may sell aggregated personal data to trusted vendors. Cookies and tracking pixels from third parties may be used for behavioral advertising. We do not honor Do Not Track (DNT) signals.",
+      "patterns": [
+        {
+          "idx": 12,
+          "score": 0.7287102937698364,
+          "chunk": "# CATEGORY: DATA COLLECTION, SHARING, PROFILING & RETENTION\n# PURPOSE: Flag broad, invasive, or vague data practices; indefinite retention; third-party sharing/ads; cross-service profiling.\n# SIGNALS: \u201ccollect\u201d, \u201cshare with affiliates/partners\u201d, \u201ccombine\u201d, \u201cretain\u201d, \u201csell\u201d, \u201canalytics\u201d, \u201cadvertising\u201d, \u201cbiometric\u201d."
+        },
+        {
+          "idx": 25,
+          "score": 0.6724406480789185,
+          "chunk": "# CATEGORY: SURVEILLANCE, MONITORING & RECORDING\n# PURPOSE: Identify invasive tracking, keylogging, screen capture, audio/video recording, employee/consumer monitoring.\n# SIGNALS: \u201cmonitor\u201d, \u201crecord\u201d, \u201ckeystrokes\u201d, \u201cscreen capture\u201d, \u201ctelemetry\u201d, \u201cbehavioral data\u201d, \u201cAI training\u201d."
+        },
+        {
+          "idx": 11,
+          "score": 0.5882433652877808,
+          "chunk": "## Mitigations / reader guidance\n- Prefer a **limited, revocable** license for operation of the service only.\n- Explicit **opt-out** of marketing usage; allow content deletion to withdraw license.\n- B2B: negotiate a **purpose-bound** license with termination. ### FILE: data_collection.txt"
+        }
+      ],
+      "answer": "**Plain-language summary:** The company collects personal data from users, including location and biometric information, to improve its services and share it with third-party partners for advertising. This data may also be sold to other vendors.\n\n**Risks/implications:**\n\n* **Invasive data collection**: \"We collect personal information including your location, camera, and microphone data\" (matches [0] SIGNALS: \"collect\", \"biometric\").\n* **Third-party sharing**: \"We may share this data with third-party partners and affiliates for analytics and targeted advertising\" (matches [0] SIGNALS: \"share with affiliates/partners\", \"analytics\", \"advertising\").\n* **Aggregated personal data sale**: \"We may sell aggregated personal data to trusted vendors\" (matches [0] SIGNALS: \"sell\").\n* **Behavioral advertising**: \"Cookies and tracking pixels from third parties may be used for behavioral advertising\" (matches [1] SIGNALS: \"behavioral data\", but more closely related to [0] SIGNALS: \"advertising\").\n* **No Do Not Track (DNT) compliance**: \"We do not honor Do Not Track (DNT) signals\" (no direct match, but implies disregard for user tracking preferences).\n\n**Likely category:** CATEGORY: DATA COLLECTION, SHARING, PROFILING & RETENTION"
+    },
+    {
+      "clause_idx": 3,
+      "clause": "Your data may be transferred internationally, including outside your country of residence. We retain your information as long as necessary to fulfill business purposes or legal obligations. You may exercise your rights to access, delete, or restrict the use of your personal information under applicable law.",
+      "patterns": [
+        {
+          "idx": 29,
+          "score": 0.658137857913971,
+          "chunk": "## Risk notes / legal references (non-legal-advice)\n- Wiretap/recording consent laws (one-party vs. two-party states).\n- GDPR: transparency, purpose limitation, DPIAs for high-risk processing.\n- Workplace monitoring: specific laws and notice requirements."
+        },
+        {
+          "idx": 11,
+          "score": 0.6072728037834167,
+          "chunk": "## Mitigations / reader guidance\n- Prefer a **limited, revocable** license for operation of the service only.\n- Explicit **opt-out** of marketing usage; allow content deletion to withdraw license.\n- B2B: negotiate a **purpose-bound** license with termination. ### FILE: data_collection.txt"
+        },
+        {
+          "idx": 5,
+          "score": 0.5889522433280945,
+          "chunk": "## Risk notes / legal references (non-legal-advice)\n- US: FAA governs arbitration; state laws vary on unconscionability.\n- EU: Consumer directives often require fair/transparent terms; forced arbitration can be problematic."
+        }
+      ],
+      "answer": "**Plain-Language Summary**\nThis clause explains that your personal data may be transferred to other countries and will be kept for as long as necessary. You have the right to access, delete, or restrict the use of your data under applicable law.\n\n**Risks/Implications:**\n\n* **International Data Transfer**: Your data \"may be transferred internationally\" which raises concerns about data protection laws in foreign jurisdictions (Pattern [2] ## Risk notes / legal references).\n* **Data Retention**: The clause states that data will be retained for as long as necessary to fulfill business purposes or legal obligations, but it does not specify a clear timeframe or criteria for deletion (no direct match, but Pattern [1] ## Mitigations / reader guidance suggests providing more transparency and control over data retention).\n* **Limited Rights**: The clause mentions that you can exercise your rights under applicable law, but it does not explicitly provide information about how to do so or what those rights are. This may leave users uncertain about their ability to access, delete, or restrict the use of their data (Pattern [1] ## Mitigations / reader guidance suggests providing more explicit opt-out and deletion options).\n\n**Likely Category:** Data Protection/International Data Transfer"
+    },
+    {
+      "clause_idx": 4,
+      "clause": "If you wish to opt out, please print and mail a written request to our office. We will provide notice of any updates by posting them on this page. Children under 13 should not use our service without parental consent.",
+      "patterns": [
+        {
+          "idx": 6,
+          "score": 0.6374770402908325,
+          "chunk": "## Mitigations / reader guidance\n- Check for **opt-out** and exercise it if desired.\n- Ask vendor for a **court option** or **small-claims carveout**.\n- For B2B: negotiate venue neutrality and fee-splitting caps. ### FILE: content_rights.txt"
+        },
+        {
+          "idx": 11,
+          "score": 0.6268197894096375,
+          "chunk": "## Mitigations / reader guidance\n- Prefer a **limited, revocable** license for operation of the service only.\n- Explicit **opt-out** of marketing usage; allow content deletion to withdraw license.\n- B2B: negotiate a **purpose-bound** license with termination. ### FILE: data_collection.txt"
+        },
+        {
+          "idx": 30,
+          "score": 0.6010814905166626,
+          "chunk": "## Mitigations / reader guidance\n- Provide **explicit opt-in** for recordings; clear retention limits.\n- Disable highly invasive trackers by default; allow **per-feature consent**.\n- Separate **training data** from operational data with opt-outs. ### FILE: unilateral_changes.txt"
+        }
+      ],
+      "answer": "**Plain-Language Summary**\n\nThe clause requires users to opt out in writing if they don't want to use the service. It also warns that children under 13 need parental consent to use the service.\n\n**Risks and Implications**\n\n* **Lack of clear opt-out mechanism**: The clause does not provide a straightforward way for users to opt out, which may lead to continued usage without explicit consent.\n\t+ \"If you wish to opt out, please print and mail a written request...\" (clause)\n* **Unclear notice requirements**: The clause only mentions posting updates on the page, but it's unclear how users will be notified of changes or if they'll receive direct notice.\n\t+ \"...We will provide notice of any updates by posting them on this page.\" (clause)\n* **Parental consent requirement for minors**: While well-intentioned, this requirement may create difficulties for parents who want to allow their children to use the service with some level of autonomy.\n\n**Likely Category:** [2] ## Mitigations / reader guidance (unilateral_changes.txt)"
+    }
+  ]
+}

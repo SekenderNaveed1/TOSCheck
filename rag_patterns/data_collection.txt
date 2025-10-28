@@ -1,0 +1,37 @@
+# CATEGORY: DATA COLLECTION, SHARING, PROFILING & RETENTION
+# PURPOSE: Flag broad, invasive, or vague data practices; indefinite retention; third-party sharing/ads; cross-service profiling.
+# SIGNALS: “collect”, “share with affiliates/partners”, “combine”, “retain”, “sell”, “analytics”, “advertising”, “biometric”.
+
+## Canonical risky patterns
+- "We collect **location**, **camera**, **microphone**, **contacts**, **messages**, **payment**, **biometric** data."
+  → High sensitivity (GDPR special categories, state biometric laws).
+- "We **share** data with **affiliates**, **partners**, **service providers**, and **advertising networks**."
+  → Broad downstream use; hard to track.
+- "We **combine** your data with information from **third parties**."
+  → Cross-platform profiling and re-identification risk.
+- "We **retain** personal information **indefinitely**/**as needed**."
+  → Lack of clear retention schedule.
+- "We may **sell**/“monetize” insights or **aggregate** data without clear de-identification standards."
+  → Re-identification risk; CCPA/CPRA “sale/share” implications.
+
+## Examples (realistic)
+1) "We collect **precise location** and **microphone recordings** to enhance your experience."
+2) "We share information with **trusted partners and affiliates** for **analytics and targeted advertising**."
+3) "We may **combine** your account data with **data brokers**."
+4) "We **retain** data **for as long as necessary** for business purposes."
+5) "We may **sell aggregated insights** to third parties."
+
+## Heuristics / detection cues
+- Watch vague lists (“including but not limited to”).
+- Look for “partners,” “affiliates,” “service providers,” “SDKs,” “pixels,” “cookies,” “advertising.”
+- Check retention: “indefinite,” “as long as necessary.”
+
+## Risk notes / legal references (non-legal-advice)
+- GDPR: legal bases (consent/contract/legitimate interests), transparency, purpose limitation, storage limitation, DPIAs.
+- US: CPRA (sale/share definitions), state biometric/privacy laws; children’s privacy (COPPA).
+
+## Mitigations / reader guidance
+- Demand a **data map** and **retention schedule**; request opt-outs.
+- Use **least-privilege** app permissions; disable sensitive sensors.
+- For vendors: DPAs, SCCs, and subprocessors list with change notifications.
+

@@ -1,0 +1,34 @@
+# CATEGORY: UNILATERAL CHANGES & SERVICE CONTROL
+# PURPOSE: Flag terms allowing one-sided modification of ToS, policy updates without notice, unilateral termination, feature removal.
+# SIGNALS: “we may modify at any time”, “without notice”, “sole discretion”, “suspend/terminate”, “retroactive”.
+
+## Canonical risky patterns
+- "We may **modify these terms at any time** **without notice**."
+  → Users bound to unseen changes; transparency issue.
+- "Continued use constitutes **acceptance** of updates."
+  → Passive consent; users may miss changes.
+- "We may **suspend or terminate** service/account **at our sole discretion**."
+  → No cause required; risk of sudden loss.
+- "We may **remove features** or **discontinue services** at any time, without liability."
+  → Business continuity risk.
+- "Changes may apply **retroactively**."
+  → Past behavior suddenly judged by new rules.
+
+## Examples (realistic)
+1) "We can **update** these Terms **at any time**; check back regularly."
+2) "We may **suspend or terminate** accounts for any reason."
+3) "We may **deprecate features** or **shut down** the service without compensation."
+
+## Heuristics / detection cues
+- Often at the end of ToS (“Miscellaneous”); “Changes,” “Updates,” “Termination” sections.
+- Look for lack of notice periods, versioning, or changelogs.
+
+## Risk notes / legal references (non-legal-advice)
+- EU consumer law expects transparency and fairness; unilateral change terms may be scrutinized.
+- B2B contracts generally negotiate change-control and termination conditions.
+
+## Mitigations / reader guidance
+- Require **advance notice** (e.g., 30 days) and **email notifications**.
+- For B2B: add **material adverse change** definition + right to terminate or continue on old terms.
+- Maintain a **public changelog** and versioned ToS; avoid retroactivity.
+

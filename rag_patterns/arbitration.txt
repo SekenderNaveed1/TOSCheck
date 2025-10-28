@@ -1,0 +1,41 @@
+# CATEGORY: ARBITRATION & DISPUTE RESOLUTION
+# PURPOSE: Identify clauses that limit users’ ability to sue, force arbitration, restrict class actions, impose costly venues/rules.
+# SIGNALS: “binding arbitration”, “AAA/JAMS rules”, “waive jury trial”, “no class actions”, “venue”, “governing law”, “fees”, “opt-out window”.
+
+## Canonical risky patterns (with short rationale)
+- "All disputes must be resolved by **binding arbitration** in [Location]."
+  → Removes right to sue in court; proceedings are private; appeal options limited.
+- "You **waive your right to a jury trial** or **class action**."
+  → Prevents collective redress (important where small individual harms add up).
+- "Arbitration administered by **AAA** or **JAMS** under [specific] rules."
+  → Administrative + arbitrator costs may deter claims; rules can favor repeat-player companies.
+- "**Exclusive venue** in [State/Country] and **governing law** of [X]."
+  → Travel/cost burden; unfamiliar law may weaken consumer protections.
+- "Company may **modify arbitration rules** or **appoint arbitrator** at its discretion."
+  → Tilted process.
+- "Short **opt-out** window (e.g., 30 days) via certified mail."
+  → Hard to exercise; hides meaningful choice.
+- "Prevailing party entitled to **fees/costs**, user must share arbitrator fees."
+  → Cost risk chills claims.
+
+## Examples (realistic)
+1) "Any dispute arising from these Terms will be settled by **binding arbitration** in **Delaware** under the **AAA Consumer Rules**. **You waive any right to a jury trial**."
+2) "You agree **not to pursue or participate in any class, collective, or representative action**."
+3) "The **governing law** is **California**, and the **exclusive forum** is **San Mateo County, CA**."
+4) "We may **update our arbitration procedures** and **designate the arbitrator** in our sole discretion."
+5) "Users may **opt out of arbitration within 30 days** by sending a signed letter to [address]."
+
+## Heuristics / detection cues
+- Keywords: arbitration, AAA, JAMS, class action, jury trial, governing law, venue, forum, dispute resolution.
+- Structure: found near “Dispute Resolution,” “Governing Law,” “Miscellaneous.”
+- Look for prohibitions: “may not participate,” “must bring claims individually.”
+
+## Risk notes / legal references (non-legal-advice)
+- US: FAA governs arbitration; state laws vary on unconscionability.
+- EU: Consumer directives often require fair/transparent terms; forced arbitration can be problematic.
+
+## Mitigations / reader guidance
+- Check for **opt-out** and exercise it if desired.
+- Ask vendor for a **court option** or **small-claims carveout**.
+- For B2B: negotiate venue neutrality and fee-splitting caps.
+

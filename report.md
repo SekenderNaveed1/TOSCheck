@@ -1,173 +1,20 @@
-# TOSCheck Report
+# Answer
 
-## Arbitration / class-action waiver
+Here are my findings:
 
-**Rationale:** Semantic match to exemplars ≥0.82.
+• The terms can be changed at any time without notice. ([0])
+• There is no mention of binding arbitration.
+• Dispute resolution is not specified. 
+• Changes to the terms may affect existing users. ([0])
+• Users should review these terms regularly for updates. ([0])
+• No specific method for resolving disputes or claims is mentioned.
 
-**Cited Sentences:**
+Summary: The provided context does not indicate the use of binding arbitration, and dispute resolution methods are not specified.
 
-- (3) You waive any right to participate in a class action or jury trial.
+## Retrieved Chunks
 
----
+### [0] (score 0.404)
 
-## Automatic renewal / negative option
-
-**Rationale:** Semantic match to exemplars ≥0.82.
-
-**Cited Sentences:**
-
-- (8) Subscriptions automatically renew each month unless canceled in writing via postal mail.
-
----
-
-## Broad license to user content
-
-**Rationale:** Semantic match to exemplars ≥0.82.
-
-**Cited Sentences:**
-
-- (12) By uploading content, you grant us a perpetual, worldwide, royalty-free, and irrevocable license to use, modify, and distribute your submissions.
+We may change these terms at any time without notice.
 
 ---
-
-## Children's data (COPPA / minors)
-
-**Rationale:** Semantic match to exemplars ≥0.82.
-
-**Cited Sentences:**
-
-- (23) Children under 13 should not use our service without parental consent.
-
----
-
-## Data collection (personal)
-
-**Rationale:** Semantic match to exemplars ≥0.82.
-
-**Cited Sentences:**
-
-- (13) We collect personal information including your location, camera, and microphone data to improve our services.
-
----
-
-## Indemnification
-
-**Rationale:** Semantic match to exemplars ≥0.82.
-
-**Cited Sentences:**
-
-- (7) You agree to indemnify and hold us harmless from any claims arising out of your use.
-
----
-
-## International transfers
-
-**Rationale:** Semantic match to exemplars ≥0.82.
-
-**Cited Sentences:**
-
-- (18) Your data may be transferred internationally, including outside your country of residence.
-
----
-
-## Limitation of liability
-
-**Rationale:** Semantic match to exemplars ≥0.82.
-
-**Cited Sentences:**
-
-- (6) We are not responsible for indirect, incidental, or consequential damages.
-
----
-
-## Location / device data
-
-**Rationale:** Semantic match to exemplars ≥0.82.
-
-**Cited Sentences:**
-
-- (13) We collect personal information including your location, camera, and microphone data to improve our services.
-
----
-
-## Notice by posting only
-
-**Rationale:** Semantic match to exemplars ≥0.82.
-
-**Cited Sentences:**
-
-- (22) We will provide notice of any updates by posting them on this page.
-
----
-
-## Opt-out hard to find
-
-**Rationale:** Semantic match to exemplars ≥0.82.
-
-**Cited Sentences:**
-
-- (21) If you wish to opt out, please print and mail a written request to our office.
-
----
-
-## Refund exclusions
-
-**Rationale:** Semantic match to exemplars ≥0.82.
-
-**Cited Sentences:**
-
-- (11) All payments are non-refundable.
-
----
-
-## Termination for convenience
-
-**Rationale:** Semantic match to exemplars ≥0.82.
-
-**Cited Sentences:**
-
-- (4) We may terminate your account at our sole discretion, for any reason or no reason at all.
-
----
-
-## Third-party trackers / cookies
-
-**Rationale:** Semantic match to exemplars ≥0.82.
-
-**Cited Sentences:**
-
-- (16) Cookies and tracking pixels from third parties may be used for behavioral advertising.
-- (17) We do not honor Do Not Track (DNT) signals.
-
----
-
-## Unilateral changes
-
-**Rationale:** Semantic match to exemplars ≥0.82.
-
-**Cited Sentences:**
-
-- (0) We may change these Terms at any time without prior notice or consent.
-
----
-
-## User rights (GDPR/CCPA/CPRA)
-
-**Rationale:** Semantic match to exemplars ≥0.82.
-
-**Cited Sentences:**
-
-- (20) You may exercise your rights to access, delete, or restrict the use of your personal information under applicable law.
-
----
-
-## Warranty disclaimer
-
-**Rationale:** Semantic match to exemplars ≥0.82.
-
-**Cited Sentences:**
-
-- (5) The service is provided “as is” without any warranties of any kind.
-
----
-
