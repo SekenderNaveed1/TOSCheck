@@ -123,6 +123,116 @@ If you didn’t, that’s fine too. You’ll fit right in here.
 
 ---
 
+### How It Works (Technical Overview)
+
+TOSCheck is built around a local **RAG (Retrieval-Augmented Generation)** pipeline — essentially, it reads, breaks down, and embeds the text of Terms of Service or Privacy Policies, then uses a local LLM to analyze them in context with known legal risk patterns.
+
+#### 1. Text Extraction and Normalization
+TOSCheck supports raw text, PDFs, and HTML input.  
+The `read_text()` function cleans up the document — removing excess whitespace, boilerplate, and markup — and returns normalized, plain-text content ready for processing.
+
+#### 2. Dynamic Clause-Aware Chunking
+Documents are split into natural “clauses” using a dynamic tokenizer.  
+Instead of fixed-size chunks, the algorithm (`chunk_text()` in `chunk.py`) looks for **semantic breakpoints** such as blank lines, sentence ends, or semicolons.  
+Each chunk typically represents one coherent clause or paragraph, preserving legal context while keeping token sizes small enough for efficient embedding.
+
+#### 3. Embedding and Vector Indexing
+Each chunk is embedded using a **local embedding model** (default: `nomic-embed-text` via Ollama).  
+These embeddings are stored in `.ragcache` directories using lightweight JSON files for portability.  
+TOSCheck maintains two separate vector spaces:
+- **TOS Index (`tos_rag`)** — the document you’re analyzing.  
+- **KB Index (`kb_rag`)** — a curated knowledge base of risky legal patterns (e.g., arbitration, data collection, unilateral changes, etc.).
+
+#### 4. Retrieval (RAG Step 1)
+When analyzing, each TOS clause is used as a query against the knowledge base.  
+A cosine similarity search retrieves the most relevant pattern chunks.  
+This allows the system to match, for example, “You waive any right to a jury trial” with the “binding arbitration” category in the KB.
+
+#### 5. Contextual Explanation (RAG Step 2)
+The clause text and its matching patterns are combined into a structured prompt for a **local or remote LLM** (like an Ollama model, or OpenAI-compatible API).  
+The prompt asks the model to:
+- Summarize the clause in plain English.  
+- Identify potential risks or implications.  
+- Label the likely category (e.g., Arbitration, Data Sharing, Refunds).  
+- Optionally assign a severity level and relevant tags.
+
+#### 6. Dual-RAG Integration
+Unlike typical single-RAG setups, TOSCheck uses a **dual-RAG pipeline**:
+1. Retrieve relevant patterns from the KB for each TOS clause.  
+2. Retrieve supporting evidence within the TOS itself if multiple clauses discuss the same topic.
+
+This improves both accuracy and explainability — the model doesn’t “hallucinate” patterns because it’s grounded in retrieved text from both sides.
+
+#### 7. Reporting
+Results are exported in Markdown (`.md`) and JSON:
+- The Markdown file contains a human-readable report with summaries, risks, and exact quotes.  
+- The JSON file is structured for programmatic use or UI visualization (each clause includes embeddings, pattern matches, and generated analysis).
+
+#### 8. Fully Local & Privacy-Safe
+All processing happens on your machine — embeddings, retrieval, and generation.  
+No text is uploaded unless you explicitly configure a cloud model.  
+It’s designed to be **auditable and reproducible**, so you can trace exactly which lines led to which conclusion.
+
+---
+
+---
+
+## 🧩 System Flow
+
+TOSCheck operates as a **dual-RAG pipeline** designed to extract, compare, and explain risky clauses found in Terms of Service or Privacy Policy documents — entirely offline.
+
+Each run follows six key stages:
+
+1. **📥 Input Layer**  
+   - Accepts `.txt`, `.pdf`, or URLs (via `trafilatura`).
+   - Normalizes and cleans the text for consistent parsing.
+
+2. **🧩 Dynamic Clause-Aware Chunking**  
+   - Breaks text at logical boundaries (periods, semicolons, subclauses).
+   - Chunk size automatically adapts to content density and sentence complexity.
+
+3. **🧠 Embedding & Indexing**  
+   - Converts text chunks into vector embeddings using **nomic-embed-text** through **Ollama**.  
+   - Stores both knowledge base and document embeddings locally (`.ragcache`).
+
+4. **📚 Knowledge Base Comparison**  
+   - Each document chunk is compared against a library of prebuilt patterns  
+     (`rag_patterns/`) — such as arbitration, data collection, or refund clauses.  
+   - Similarities are computed via cosine distance for fast semantic retrieval.
+
+5. **⚖️ Dual-RAG Reasoning**  
+   - The model cross-references both the document’s content and relevant KB patterns.  
+   - The LLM then explains *why* each clause matches, and what the user should know about it.
+
+6. **📝 Output Generation**  
+   - Writes **Markdown** and **JSON** reports with:  
+     - Flagged clauses  
+     - Matched patterns  
+     - Plain-language summaries  
+     - Risk categories and confidence scores  
+
+---
+
+### 🔄 System Architecture
+
+<p align="center">
+  <img src="images/toscheck_system_flowchart.png" alt="TOSCheck System Flowchart" width="600"/>
+</p>
+
+This visual shows the entire processing flow from document input → embedding → pattern matching → LLM reasoning → report generation.
+
+---
+
+### ⚙️ Design Notes
+
+- **Fully local** — no external APIs or uploads.  
+- **Dynamic chunking** ensures balance between context and speed.  
+- **Dual-RAG** means interpretability: every flagged result is traceable to an original line and a known legal pattern.  
+- **Model-agnostic** — works with any model via **Ollama**, not tied to a specific vendor.
+
+---
+
+
 ### Final note
 This project isn’t trying to be a big deal. It’s just something small that should have existed already.  
 If it makes even one person think before clicking “I agree,” then it did its job.  
