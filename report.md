@@ -2,7 +2,7 @@
 
 ## Unilateral changes
 
-**Rationale:** Terms may be changed without prior notice or consent.
+**Rationale:** 
 
 **Cited Sentences:**
 
@@ -10,9 +10,70 @@
 
 ---
 
+## Arbitration / class-action waiver
+
+**Rationale:** 
+
+**Cited Sentences:**
+
+- (2) The governing law will be the State of Delaware, and disputes must be resolved through binding arbitration.
+- (3) You waive any right to participate in a class action or jury trial.
+
+---
+
+## Governing law / venue
+
+**Rationale:** 
+
+**Cited Sentences:**
+
+- (2) The governing law will be the State of Delaware, and disputes must be resolved through binding arbitration.
+
+---
+
+## Termination for convenience
+
+**Rationale:** 
+
+**Cited Sentences:**
+
+- (4) We may terminate your account at our sole discretion, for any reason or no reason at all.
+
+---
+
+## Warranty disclaimer
+
+**Rationale:** 
+
+**Cited Sentences:**
+
+- (5) The service is provided “as is” without any warranties of any kind.
+
+---
+
+## Limitation of liability
+
+**Rationale:** 
+
+**Cited Sentences:**
+
+- (6) We are not responsible for indirect, incidental, or consequential damages.
+
+---
+
+## Indemnification
+
+**Rationale:** 
+
+**Cited Sentences:**
+
+- (7) You agree to indemnify and hold us harmless from any claims arising out of your use.
+
+---
+
 ## Automatic renewal / negative option
 
-**Rationale:** Subscriptions automatically renew unless canceled in writing.
+**Rationale:** 
 
 **Cited Sentences:**
 
@@ -22,7 +83,7 @@
 
 ## Price / fee changes
 
-**Rationale:** Prices or fees may be increased with or without notice.
+**Rationale:** 
 
 **Cited Sentences:**
 
@@ -32,7 +93,7 @@
 
 ## Refund exclusions
 
-**Rationale:** All payments are non-refundable.
+**Rationale:** 
 
 **Cited Sentences:**
 
@@ -42,7 +103,7 @@
 
 ## Broad license to user content
 
-**Rationale:** Perpetual, worldwide, royalty-free license granted for user submissions.
+**Rationale:** 
 
 **Cited Sentences:**
 
@@ -52,7 +113,17 @@
 
 ## Data collection (personal)
 
-**Rationale:** Personal information including location, camera, and microphone data is collected.
+**Rationale:** 
+
+**Cited Sentences:**
+
+- (13) We collect personal information including your location, camera, and microphone data to improve our services.
+
+---
+
+## Location / device data
+
+**Rationale:** 
 
 **Cited Sentences:**
 
@@ -62,7 +133,7 @@
 
 ## Data sharing / sale
 
-**Rationale:** Data shared with third-party partners and affiliates for analytics and advertising.
+**Rationale:** 
 
 **Cited Sentences:**
 
@@ -73,27 +144,28 @@
 
 ## Targeted ads / profiling
 
-**Rationale:** Cookies and tracking pixels used for behavioral advertising.
+**Rationale:** 
 
 **Cited Sentences:**
 
-- (16) Cookies and tracking pixels from third parties may be used for behavioral advertising.
+- (14) We may share this data with third-party partners and affiliates for analytics and targeted advertising.
 
 ---
 
 ## Third-party trackers / cookies
 
-**Rationale:** Cookies and tracking pixels from third parties used for behavioral advertising.
+**Rationale:** 
 
 **Cited Sentences:**
 
 - (16) Cookies and tracking pixels from third parties may be used for behavioral advertising.
+- (17) We do not honor Do Not Track (DNT) signals.
 
 ---
 
 ## International transfers
 
-**Rationale:** Data may be transferred internationally, including outside your country of residence.
+**Rationale:** 
 
 **Cited Sentences:**
 
@@ -103,7 +175,7 @@
 
 ## Data retention / deletion
 
-**Rationale:** Data retained as long as necessary to fulfill business purposes or legal obligations.
+**Rationale:** 
 
 **Cited Sentences:**
 
@@ -113,7 +185,7 @@
 
 ## User rights (GDPR/CCPA/CPRA)
 
-**Rationale:** Rights to access, delete, or restrict personal information under applicable law.
+**Rationale:** 
 
 **Cited Sentences:**
 
@@ -121,19 +193,19 @@
 
 ---
 
-## Opt-out hard to find
+## Children's data (COPPA / minors)
 
-**Rationale:** Opt-out process requires printing and mailing a written request.
+**Rationale:** 
 
 **Cited Sentences:**
 
-- (21) If you wish to opt out, please print and mail a written request to our office.
+- (23) Children under 13 should not use our service without parental consent.
 
 ---
 
 ## Notice by posting only
 
-**Rationale:** Updates provided by posting on this page.
+**Rationale:** 
 
 **Cited Sentences:**
 
@@ -141,13 +213,13 @@
 
 ---
 
-## Children's data (COPPA / minors)
+## Opt-out hard to find
 
-**Rationale:** Children under 13 should not use the service without parental consent.
+**Rationale:** 
 
 **Cited Sentences:**
 
-- (23) Children under 13 should not use our service without parental consent.
+- (21) If you wish to opt out, please print and mail a written request to our office.
 
 ---
 

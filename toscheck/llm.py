@@ -38,7 +38,7 @@ Expected JSON:
 """
 
 def _categories_block() -> str:
-    return "\\n".join([f"- {c}" for c in CATEGORIES])
+    return "\n".join([f"- {c}" for c in CATEGORIES])
 
 USER_TEMPLATE = """You are given numbered sentences from a Terms/Privacy document.
 
@@ -61,27 +61,27 @@ Sentences:
 """
 
 def _extract_json_list(text: str) -> Optional[str]:
-    m = re.search(r"\\[[\\s\\S]*\\]", text)
+    m = re.search(r"\[[\s\S]*\]", text)
     return m.group(0) if m else None
 
 def _parse_numbered(ns: List[str]) -> List[Tuple[int, str]]:
     out = []
     for line in ns:
-        m = re.match(r"\\s*(\\d+)\\s*:\\s*(.*)", line)
+        m = re.match(r"\s*(\d+)\s*:\s*(.*)", line)
         if m:
             out.append((int(m.group(1)), m.group(2)))
     return out
 
-def _heuristic_flags(numbered_sentences: List[str]) -> List[Dict]:
-    """Fallback: produce flags purely from regex patterns."""
+def heuristic_flags_all(numbered_sentences: List[str]) -> List[Dict]:
+    """Heuristics-only flags across ALL numbered sentences."""
     pairs = _parse_numbered(numbered_sentences)
-    flags: Dict[str, set] = {cat: set() for cat in CATEGORIES}
+    by_cat: Dict[str, set] = {cat: set() for cat in CATEGORIES}
     for idx, sent in pairs:
         for cat, regs in PATTERNS.items():
             if any(r.search(sent) for r in regs):
-                flags[cat].add(idx)
+                by_cat.setdefault(cat, set()).add(idx)
     out = []
-    for cat, idxs in flags.items():
+    for cat, idxs in by_cat.items():
         if idxs:
             out.append({
                 "category": cat,
@@ -90,47 +90,19 @@ def _heuristic_flags(numbered_sentences: List[str]) -> List[Dict]:
             })
     return out
 
-def _dedupe_union(a: List[Dict], b: List[Dict]) -> List[Dict]:
-    """Union two flag lists by (category, index)."""
-    bucket: Dict[str, set] = {}
-    rationale: Dict[str, str] = {}
-    for src in (a, b):
-        for f in src:
-            cat = f.get("category", "")
-            idxs = set(f.get("sentence_indexes", []))
-            if not cat or not idxs:
-                continue
-            bucket.setdefault(cat, set()).update(idxs)
-            # keep the first non-empty rationale we saw
-            if cat not in rationale or not rationale[cat]:
-                rationale[cat] = f.get("rationale", "")
-    out = []
-    for cat, idxs in bucket.items():
-        out.append({
-            "category": cat,
-            "sentence_indexes": sorted(idxs),
-            "rationale": rationale.get(cat, "")
-        })
-    return out
-
-def infer_flags(numbered_sentences: List[str], debug: bool = False) -> List[Dict]:
+def infer_flags(numbered_sentences: List[str], debug: bool = False, llm_only: bool = False) -> List[Dict]:
     prompt = USER_TEMPLATE.format(
         categories=_categories_block(),
         few_shot=FEW_SHOT,
-        sentences="\\n".join(numbered_sentences),
+        sentences="\n".join(numbered_sentences),
     )
-
-    # Try the model in strict JSON mode (Ollama supports "format": "json")
+    # LLM pass
+    llm_flags: List[Dict] = []
     for attempt in range(2):
         res = ollama.chat(
             model=MODEL,
             messages=[{"role":"system","content":SYSTEM},{"role":"user","content":prompt}],
-            options={
-                "num_ctx": NUM_CTX,
-                "temperature": 0.0,   # deterministic
-                "top_p": TOP_P,
-                "format": "json"      # force JSON output
-            },
+            options={"num_ctx": NUM_CTX, "temperature": 0.0, "top_p": TOP_P, "format": "json"},
             stream=False,
         )
         txt = res["message"]["content"]
@@ -138,30 +110,41 @@ def infer_flags(numbered_sentences: List[str], debug: bool = False) -> List[Dict
             print("----- DEBUG model raw -----")
             print(txt)
             print("----- /DEBUG -----")
-
-        blob = txt.strip()
+        blob = txt.strip() or _extract_json_list(txt) or ""
         if not blob:
             time.sleep(0.05)
             continue
         try:
             data = json.loads(blob)
-            if isinstance(data, list) and data:
-                # Merge with heuristics (best of both worlds)
-                return _dedupe_union(data, _heuristic_flags(numbered_sentences))
-            elif isinstance(data, list):
-                # Empty from model -> heuristics only
-                return _heuristic_flags(numbered_sentences)
+            if isinstance(data, list):
+                llm_flags = data
+                break
         except Exception:
-            # If JSON mode still gave junk, try to salvage first list-like block
-            raw_block = _extract_json_list(txt)
-            if raw_block:
-                try:
-                    data = json.loads(raw_block)
-                    if isinstance(data, list) and data:
-                        return _dedupe_union(data, _heuristic_flags(numbered_sentences))
-                except Exception:
-                    pass
-            time.sleep(0.05)
+            cleaned = re.sub(r",\s*\]", "]", blob)
+            try:
+                data = json.loads(cleaned)
+                if isinstance(data, list):
+                    llm_flags = data
+                    break
+            except Exception:
+                time.sleep(0.05)
+                continue
 
-    # Hard fallback: heuristics only
-    return _heuristic_flags(numbered_sentences)
+    if llm_only:
+        return llm_flags
+
+    # Heuristics over the same slice + union
+    heur = heuristic_flags_all(numbered_sentences)
+    bucket: Dict[str, set] = {}
+    note: Dict[str, str] = {}
+    for src in (llm_flags, heur):
+        for f in src:
+            cat = f.get("category", "")
+            idxs = set(f.get("sentence_indexes", []))
+            if not cat or not idxs:
+                continue
+            bucket.setdefault(cat, set()).update(idxs)
+            if cat not in note or not note[cat]:
+                note[cat] = f.get("rationale", "")
+    return [{"category": c, "sentence_indexes": sorted(idxs), "rationale": note.get(c, "")}
+            for c, idxs in bucket.items()]
