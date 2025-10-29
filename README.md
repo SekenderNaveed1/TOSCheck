@@ -199,6 +199,121 @@ This diagram shows how the whole thing fits together — from text extraction an
 </p>
 
 
+## Installation & Setup
+
+Alright, let’s get this thing running. TOSCheck is fully local — no cloud, no tracking, no "trust us with your data" nonsense.  
+All you need is Python and [Ollama](https://ollama.ai) because we like our models where we can see them — on our own machines.
+
+### 1. Clone the repo
+```bash
+git clone https://github.com/SekenderNaveed1/TOSCheck.git
+cd TOSCheck
+```
+
+### 2. Set up your environment
+Make a virtual environment (you don’t have to, but it keeps things clean):
+```bash
+python -m venv .venv
+source .venv/bin/activate        # Mac/Linux
+.venv\Scripts\activate           # Windows
+```
+
+Then install everything:
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Install Ollama (the local model thing)
+TOSCheck runs best with [Ollama](https://ollama.ai).  
+It’s basically your own mini-LLM factory that doesn’t send your data to the cloud. Perfect for people with trust issues (me included).
+
+If you don’t already have it, grab it and pull a model:
+```bash
+ollama pull llama3
+```
+
+**Hardware note (a.k.a. reality check):**  
+Run this on a GPU if you can. Seriously.  
+If you use your CPU, your laptop might sound like it’s trying to take off — which is fine if you miss flying.  
+(I have a love-hate relationship with flights, so hearing my fans spin at Mach 3 is... nostalgic.)
+
+Basically:  
+- Gaming laptop or PC = buttery smooth  
+- Office laptop or old MacBook = prepare for lift-off
+
+### 4. Set up your `.env`
+Make a `.env` file in the project folder and toss this in:
+```
+MODEL=llama3
+EMBED_MODEL=nomic-embed-text
+RAG_CACHE_DIR=.ragcache
+```
+
+If you want to use a cloud model (no judgment, just side-eye), add:
+```
+OPENAI_API_KEY=sk-yourkeyhere
+```
+
+### 5. Run it
+Now the fun part.  
+You can throw in a `.txt`, `.pdf`, or even a URL — TOSCheck will read it, break it down, and tell you what’s sketchy.
+
+Example:
+```bash
+python -m toscheck.app sample.txt
+```
+
+It’ll:
+1. Read and clean the text  
+2. Split it into real clauses (not random tokens like some AI nonsense)  
+3. Match clauses against known shady patterns  
+4. Tell you what’s weird, in plain English  
+5. Save the results for you to read while questioning humanity
+
+You’ll get:
+```
+report.md
+report.json
+```
+
+### Example run
+```bash
+$ python -m toscheck.app sample.txt
+[🔍] Analyzing Terms of Service...
+Found 3 flagged clauses:
+ - "We may change these terms at any time..." → Unilateral Changes
+ - "We may share your information with partners." → Data Sharing
+ - "Disputes will be handled by binding arbitration." → Arbitration
+
+Report saved to scan_report.md
+```
+
+### Reusing cache
+TOSCheck caches all your embeddings so you don’t redo the same work twice.  
+They live here:
+```
+.ragcache/
+kb_rag/
+tos_rag/
+```
+So if you re-run the same doc, it skips straight to the analysis.  
+Basically, it remembers your pain so you don’t have to.
+
+### Cleaning up
+If things get messy or you just feel like deleting stuff:
+```bash
+rm -rf .ragcache kb_rag tos_rag
+```
+
+### Where to put this section
+You can drop all this right after your "System Flow" or "How It Works (Technical Overview)" part of the README.  
+That way it flows naturally — story → tech → how to actually use the damn thing.
+
+That’s it.  
+Now go make your computer read the fine print so you don’t have to.
+
+
+
 ## Design Notes
 
 TOSCheck is completely local — nothing leaves your computer.  
