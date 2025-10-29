@@ -4,23 +4,21 @@
 
 # TOSCheck
 
-TOSCheck exists because reading the Terms of Service is important, and most people simply don’t do it.
+Most people don’t read the Terms of Service, even though that’s where companies quietly decide what they can do with your data, rights, and time.  
 
-I’d been bored for a while and wanted something new to build, but this idea stuck after reading a story about a chess player who won $1000 just by reading the Terms and Conditions that everyone else ignored. It’s a funny story, but also a reminder that nobody actually reads the fine print, even though it quietly decides how companies can use your data and what rights you sign away without realizing it.
+TOSCheck exists to make that a little less painful. It scans Terms of Service and Privacy Policies, flags the parts that stand out, and explains them in plain language. The goal is simple: help people actually understand what they’re agreeing to.
 
-TOSCheck is my way of doing something about that. It scans Terms of Service and Privacy Policies, highlights the parts that stand out, and tries to make sense of the text that’s usually written to be ignored. The goal is to make this process easier, fairer, and a little more honest.
+The idea came after reading about a chess player who won $1,000 just by reading the fine print everyone else ignored. Funny story, but also proof that nobody really reads this stuff, even when it matters.
 
-I’ve worked on other projects before, like Equigrade — which tried to make grading fairer in education. It was finished in fall 2023 but never really had any users. By then, LLMs had changed how programming classes worked. Students could use AI to write assignments, so professors switched to test-based grading instead.
+I’ve built other projects before, like *Equigrade*, which tried to make grading fairer in education. It never took off, LLMs changed how classes worked, and professors moved on. TOSCheck comes from the same place, though: wanting to build tools that give people clarity and control.  
 
-TOSCheck comes from the same motivation as Equigrade did: wanting to build something that gives people more clarity and control. The difference is that this one’s smaller, simpler, and more personal. It’s not about creating something huge — it’s about building something that should’ve existed already.
+The difference this time is scale. This one’s smaller, simpler, and personal. It’s not about building something big, just something useful that should’ve existed already.
 
-And hopefully, unlike Equigrade, TOSCheck ends up with a few users who aren’t just me at 2 a.m. pretending I’m doing research.
+If this helps even one person slow down and actually read what they’re agreeing to, that’s a win.  
+No promises it’ll win you $1,000 like that chess story, but at least you’ll know what you signed.
 
-Most people don’t read the fine print because it’s long, dull, and often written to be unreadable. But the words matter. They always have. This project is a reminder that understanding what you agree to shouldn’t feel impossible.
-
-If this tool helps even one person stop and actually read what they’re signing, I’ll count that as a win. No promises that it’ll help you win any money like that chess story, though.
-
-Also, I bet most of you won’t even read this README — which is kind of funny considering that’s literally the point of the entire project.
+And if you’re skimming this README, that’s okay.  
+You’re kind of proving the point.
 
 ---
 
