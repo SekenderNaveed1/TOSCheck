@@ -6,7 +6,7 @@
 
 TOSCheck exists because reading the Terms of Service is important, and most people simply don’t do it.
 
-I’d been bored for a while and wanted something new to build, but this idea stuck after reading a story about a chess player who won $1000 just by reading the Terms and Conditions that everyone else ignored. It’s a funny story, but also a reminder that nobody actually reads the fine print — even though it quietly decides how companies can use your data and what rights you sign away without realizing it.
+I’d been bored for a while and wanted something new to build, but this idea stuck after reading a story about a chess player who won $1000 just by reading the Terms and Conditions that everyone else ignored. It’s a funny story, but also a reminder that nobody actually reads the fine print, even though it quietly decides how companies can use your data and what rights you sign away without realizing it.
 
 TOSCheck is my way of doing something about that. It scans Terms of Service and Privacy Policies, highlights the parts that stand out, and tries to make sense of the text that’s usually written to be ignored. The goal is to make this process easier, fairer, and a little more honest.
 
@@ -247,7 +247,7 @@ This project isn’t meant to be a big deal. It’s just something small that pr
 If it makes even one person stop and read before hitting “I agree,” it did its job.  
 And if not, at least this time I read the terms.
 
-Also, yeah — I didn’t name this some “AI” thing on purpose.  
+Also, yeah I didn’t name this some “AI” thing on purpose.  
 “AI” is overhyped and slapped on everything like glitter on a school project.  
 This isn’t hype. It’s not pretending to be magic. It’s just a thing that reads the stuff nobody does.  
 Testing LLMs literally paid my bills junior year of college, but I still don’t think AI is a solution to everything.  
