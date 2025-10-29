@@ -62,10 +62,28 @@ If you accidentally share something, that’s on you, not the app.
 
 ---
 
-## For developers
+## For Developers
 
 If you’re reading this section, you probably already read GitHub’s API Terms before agreeing to them. Congratulations — you’re already ahead of 99% of people.  
 If you didn’t, that’s fine too. You’ll fit right in here.
+
+As of right now, I’d recommend this for people who are actually comfortable with the command line and know a bit of coding.  
+You don’t need to be a 10x engineer or whatever, but you should at least know how to `cd` into a folder without Googling it.  
+
+## For Developers
+
+If you’re reading this section, you probably already read GitHub’s API Terms before agreeing to them. Congratulations — you’re already ahead of 99% of people.  
+If you didn’t, that’s fine too. You’ll fit right in here.
+
+As of right now, I’d recommend this for people who are actually comfortable with the command line and know a bit of coding.  
+You don’t need to be some terminal wizard, but you should at least know how to `cd` into a folder without opening Stack Overflow.  
+
+I love people who don’t code (the majority of my friends and family don’t) — seriously — but for your own sanity, this probably isn’t the place to start.  
+Everything here is CLI-based for now, and while it’s not *hard*, it definitely *looks* intimidating if you’ve never done it before.  
+You can totally figure it out with some patience (and maybe an LLM holding your hand through it), but yeah — this is a dev-friendly zone for now.  
+If that changes someday, great. Until then, if the terminal scares you, maybe sit this one out or just hang around for moral support.
+
+
 
 ---
 
