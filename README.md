@@ -65,58 +65,6 @@ If you share something by accident, that’s on you, not the app.
 
 ---
 
-### FAQ
-
-**Does this replace a lawyer?**  
-No. It just helps you decide what to ask a lawyer about, if you can even afford one in this economy.
-
-**Will it make me $1000 for reading terms?**  
-Unlikely. But it might save you from agreeing to something you don’t want.
-
-**Why local?**  
-Because documents like this are private. Also because local is calmer.
-
-**Can I run this without knowing how to code?**  
-Technically yes, but practically no. You’ll need to know how to run a Python script. If that sounds intimidating, don’t worry — an LLM will probably hold your hand through it.
-
-**What models does it use?**  
-Anything you point it to. You can use a local model through Ollama or an API call if you already have one set up. TOSCheck doesn’t care, it just reads what’s there.
-
-**Is this giving me legal advice?**  
-Absolutely not. It’s just summarizing and flagging text that looks odd. You still have to use your own brain (or a lawyer’s).
-
-**Does it store or send my data anywhere?**  
-No. Everything happens locally. Nothing leaves your machine unless you explicitly make it leave.
-
-**How accurate is it?**  
-Pretty decent. I’m not running benchmark datasets on this just yet since, honestly, I’m not getting paid and it’s not exactly a career booster right now. It’s not perfect, but it catches the stuff that stands out: arbitration, vague language, data sharing, and similar patterns. 
-
-**Why make this at all?**  
-Because nobody reads these documents, and yet we agree to them every day. TOSCheck is just one small way to make that habit a little less blind.
-
-**Can I contribute?**  
-Sure. Open a pull request or an issue if you think something can be improved. If you break something, at least open an issue about that too.
-
-**Will this ever have a UI?**  
-Maybe. For now, the command line is enough. It keeps it quiet and fast, and you feel slightly more like a hacker while reading about arbitration clauses.
-
-**How long does it take to run?**  
-Depends on the model and the length of the TOS. Usually under a minute unless you’re using a potato or a 175B model on your laptop.
-
-**Can I use it at work?**  
-If you can legally use open-source tools, yes. If not, you might want to check your employer’s tech AUP.
-
-**Will it yell at me for not reading the TOS?**  
-No. It’ll just silently judge you, which is somehow worse.
-
-**Can I run it on random apps just for fun?**  
-Go for it. You’ll be surprised how many “free” things quietly cost your data.
-
-**Does it work on Privacy Policies too?**  
-Yes. In fact, those are usually where the weirdest stuff hides.
-
----
-
 ## For developers
 
 If you’re reading this section, you probably already read the terms before agreeing to GitHub’s API policy. Congratulations — you’re already ahead of 99% of people.  
@@ -321,8 +269,139 @@ The dynamic chunking system balances accuracy with speed.
 The dual-RAG setup means every result is traceable back to both the original text and a matching legal pattern.  
 It’s model-agnostic, so you can run it with any LLM connected through Ollama or your own API endpoint.
 
+
+## FAQ
+
+**Does this replace a lawyer?**  
+No. It just helps you figure out what to ask a lawyer about — assuming you can afford one in this economy.
+
+**Will it make me $1000 for reading terms?**  
+Probably not. But it might save you from giving away the rights to your data, your ideas, and your soul. Small wins.
+
+**Why does it run locally?**  
+Because privacy tools that phone home are an oxymoron.  
+No servers, no telemetry, no “for research purposes” analytics.  
+It runs on your machine and stays there. Simple as that.
+
+**Can I run this without knowing how to code?**  
+Technically yes, practically no.  
+You’ll need to know how to run a Python script.  
+But let’s be real — if you found this repo, you can probably type `python -m toscheck.app sample.txt` without having an existential crisis.
+
+**Why the name “TOSCheck”?**  
+Because everything else that sounded cooler was taken.  
+And because I didn’t want to slap “AI” or “LLM” in the name like it’s a startup pitch deck.  
+It’s just a tool that reads the fine print. No buzzwords needed.
+
+**What models does it use?**  
+Whatever you point it to.  
+You can use a local model through Ollama, or an API one if you’re okay with the cloud.  
+TOSCheck doesn’t care — it just reads, embeds, and calls it like it sees it.
+
+**Is this giving me legal advice?**  
+Absolutely not.  
+It just flags the stuff that looks odd so you can decide what actually matters.  
+If you still sign it after seeing “binding arbitration,” that’s between you and your conscience.
+
+**Does it store or send my data anywhere?**  
+Nope. Everything happens locally.  
+If you accidentally drag in your tax returns, that’s on you, not the app.
+
+**How accurate is it?**  
+Pretty solid.  
+It’s not perfect, but it catches the big-ticket stuff — arbitration clauses, vague permissions, “we may change these terms at any time,” and the usual data-sharing fine print.  
+It’s not GPT-lawyer, but it’s not guessing either.  
+I didn’t test it on fancy F1 scores or benchmark datasets or any of that academic stuff yet — this isn’t a paper, it’s a project.  
+But on the small set of real-world docs I ran it on, it did surprisingly well.  
+Like, “huh, that actually worked” levels of good.
+
+**Why make this at all?**  
+Because everyone scrolls through “I agree” like it’s a reflex, and companies count on that.  
+And honestly, it’s not just tech terms — people don’t read anything. Like, ever.  
+It’s the same energy as when someone gets “finessed” by a car dealership and brags,  
+“Bro, I got a good deal — only $400 a month!” and then you find out it’s for 84 months at 12% interest.  
+Like, dude… you didn’t get a deal, you got a payment plan for a down payment.  
+People just see a small number and stop asking questions. That’s kind of the whole point of this project — to make reading stuff less painful before it bites you.
+
+**Can I contribute?**  
+Sure thing.  
+Open a pull request, file an issue, or suggest a better name for half the functions.  
+If you break something, open an issue and tell me how — I’ll probably thank you for finding it.
+
+**Will this ever have a UI?**  
+Maybe.  
+Right now it’s command-line only, fast, quiet, and hacker-vibes only.  
+If you’re allergic to terminals, just wait. A simple web UI might happen once the core stuff’s bulletproof.
+
+**How long does it take to run?**  
+Depends on the model and the length of the doc.  
+Usually under a minute unless you’re using a potato, or you decided to run a 175B model on your laptop for science.
+
+**Can I use it at work?**  
+If your job lets you use open-source tools, yes.  
+If not, maybe read your employer’s tech policy.  
+(Yes, that’s irony. You’ll fit right in here.)
+
+**Will it yell at me for not reading the TOS?**  
+No. It’ll just quietly judge you. Which somehow hurts more.
+
+**Can I run it on random apps just for fun?**  
+Absolutely.  
+It’s borderline therapeutic once you start seeing how ridiculous some of these policies are.
+
+**Does it work on Privacy Policies too?**  
+Yes, and those are usually where the real nonsense hides.  
+Half the time, the Privacy Policy is just a polite way of saying “we sell your data, but nicely.”
+
+**Why is it local and not a web app?**  
+Because not everything needs to be SaaS with subscriptions, analytics, and a “Pro” tier.  
+You own the tool. You run it when you want. End of story.
+
+**Does this use OpenAI or cloud APIs by default?**  
+No. It’s wired for Ollama first.  
+If you really want to use a cloud model, you can — just drop your API key in `.env`.  
+But it won’t do that unless you tell it to.
+
+**Why not just use ChatGPT for this?**  
+You could — but you’d be manually pasting your TOS into a chatbot that saves your data to train more chatbots.  
+So yeah, you could… but maybe don’t.
+
+**How big is this thing?**  
+Lightweight.  
+No massive dependencies, no weird container setup, no Docker hell.  
+It’s just Python, a couple folders, and a working Ollama install.
+
+**Can it summarize PDFs too?**  
+Yep.  
+You can feed it `.txt`, `.pdf`, or even URLs — it’ll clean and normalize everything for you.  
+No need for manual copy-pasting chunks of text like it’s 2010.
+
+**Does it have plans for updates?**  
+Probably, yeah.  
+The plan is to make the reports prettier, maybe build a tiny UI, and add more pattern coverage — like refund policies, hidden subscriptions, or data retention clauses.  
+If you’ve got ideas, drop them in Issues.
+
+**Is this one of those “AI-powered startups”?**  
+No.  
+This isn’t trying to be a company.  
+It’s just a project that should have existed already — built because I was tired of nobody reading the fine print.
+
+**What’s the real goal here?**  
+Just clarity.  
+If one person stops and actually reads before hitting “I agree,” that’s a win.  
+If not, well, at least I read the terms this time.
+
+
+
 ## Final Note
 
 This project isn’t meant to be a big deal. It’s just something small that probably should’ve existed already.  
 If it makes even one person stop and read before hitting “I agree,” then it did its job.  
 And if not, well, at least this time I read the terms.
+
+Also, yeah — I didn’t on purpose name this some “AI” thing.  
+I feel like “AI” gets thrown around way too much right now, and not everything needs that label.  
+This isn’t about hype or pretending it’s magic; it’s just about building something that’s useful.  
+Testing LLMs literally paid the bills for me my junior year of college, but I still don’t think it’s a solution to everything.  
+This is just one small tool that helps make sense of the stuff we all agree to without thinking.
+
