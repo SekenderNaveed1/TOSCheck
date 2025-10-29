@@ -280,7 +280,7 @@ People see a small number and stop asking questions, this project exists to make
 Sure. PRs, issues, chaos welcome. If you break something, at least tell me how.
 
 **Will this ever have a UI?**  
-Maybe. Right now, CLI only — fast, quiet, hacker-core. A web UI might come later.
+Maybe. Right now, CLI only, fast, quiet, looks cool. A web UI might come later.
 
 **Can I use it at work?**  
 If your job lets you use open-source, yes. If not, maybe read the tech policy. (See? Reading helps.)
