@@ -12,23 +12,18 @@ The idea came after reading about a chess player who won $1,000 just by reading 
 
 I’ve built other projects before, like *Equigrade*, which tried to make grading fairer in education. It never took off, LLMs changed how classes worked, and professors moved on. TOSCheck comes from the same place, though: wanting to build tools that give people clarity and control.  
 
-The difference this time is scale. This one’s smaller, simpler, and personal. It’s not about building something big, just something useful that should’ve existed already.
+This one’s smaller, simpler, and personal. It’s not about building something big, just something useful that should’ve existed already.
 
-If this helps even one person slow down and actually read what they’re agreeing to, that’s a win.  
+If this helps someone actually read what they’re agreeing to, that’s enough.  
 No promises it’ll win you $1,000 like that chess story, but at least you’ll know what you signed.
 
-And if you’re skimming this README, that’s okay.  
-You’re kind of proving the point.
-
----
+And if you’re skimming this README, that’s okay — you’re kind of proving the point.
 
 ## Why now
 
 Everyone’s using AI tools, but nobody’s reading the fine print that comes with them.  
 New apps, new APIs, new “we value your privacy” pop-ups — all of them say something you probably shouldn’t ignore.  
 TOSCheck is just a small push toward paying attention again.
-
----
 
 ## What it might flag
 
@@ -39,18 +34,16 @@ TOSCheck is just a small push toward paying attention again.
 Unilateral changes, Data sharing, Arbitration.  
 Short, direct, and exactly what you need to know.
 
-TOSCheck doesn’t just summarize at random — it uses a local LLM (via Ollama or your configured model) to read the text line by line, score each sentence for legal patterns, and cite the lines that triggered each flag.
+TOSCheck doesn’t just summarize at random, it uses a local LLM (via Ollama or your configured model) to read the text line by line, score each sentence for legal patterns, and cite the lines that triggered each flag.
 
-It looks for things like:
-- Unilateral authority: “we can change this whenever we want”
-- Data sharing: “third parties,” “affiliates,” “partners”
-- Binding arbitration or waiver of rights
-- Vague permissions: “for purposes deemed appropriate”
-- Opt-out tricks hidden in the text
+It looks for things like  
+- Unilateral authority: “we can change this whenever we want”  
+- Data sharing: “third parties,” “affiliates,” “partners”  
+- Binding arbitration or waiver of rights  
+- Vague permissions: “for purposes deemed appropriate”  
+- Opt-out tricks hidden in the text  
 
-It doesn’t editorialize or moralize — it just points at the weird stuff so you can decide what matters.
-
----
+It doesn’t editorialize or moralize, it just points out the weird stuff so you can decide what matters.
 
 ## Privacy
 
@@ -58,32 +51,17 @@ No uploads. No tracking. No servers.
 Everything runs entirely on your machine.  
 If you accidentally share something, that’s on you, not the app.
 
----
-
 ## For Developers
 
-If you’re reading this section, you probably already read GitHub’s API Terms before agreeing to them. Congratulations — you’re already ahead of 99% of people.  
+If you’re reading this section, you probably already read GitHub’s API Terms before agreeing to them. Congratulations, you’re already ahead of 99% of people.  
 If you didn’t, that’s fine too. You’ll fit right in here.
 
-As of right now, I’d recommend this for people who are actually comfortable with the command line and know a bit of coding.  
-You don’t need to be a 10x engineer or whatever, but you should at least know how to `cd` into a folder without Googling it.  
-
-## For Developers
-
-If you’re reading this section, you probably already read GitHub’s API Terms before agreeing to them. Congratulations — you’re already ahead of 99% of people.  
-If you didn’t, that’s fine too. You’ll fit right in here.
-
-As of right now, I’d recommend this for people who are actually comfortable with the command line and know a bit of coding.  
+As of right now, I’d recommend this for people who are comfortable with the command line and know a bit of coding.  
 You don’t need to be some terminal wizard, but you should at least know how to `cd` into a folder without opening Stack Overflow.  
 
-I love people who don’t code (the majority of my friends and family don’t) — seriously — but for your own sanity, this probably isn’t the place to start.  
 Everything here is CLI-based for now, and while it’s not *hard*, it definitely *looks* intimidating if you’ve never done it before.  
 You can totally figure it out with some patience (and maybe an LLM holding your hand through it), but yeah — this is a dev-friendly zone for now.  
-If that changes someday, great. Until then, if the terminal scares you, maybe sit this one out or just hang around for moral support.
-
-
-
----
+If that ever changes, great. Until then, this one’s for people who don’t mind a terminal window.
 
 ## How It Works
 
@@ -115,11 +93,8 @@ You get both `report.md` and `report.json` with all flagged clauses, patterns, a
 ### 8. Privacy-Safe
 No uploads, no hidden calls, no tracking. Runs fully local — or connect your own API key if you want to go cloud.
 
----
-
 ## Installation & Setup
 
-Alright, let’s get this thing running.  
 All you need is Python and [Ollama](https://ollama.ai), because we like our models where we can see them — on our own machines.
 
 ### 1. Clone the repo
@@ -137,15 +112,14 @@ pip install -r requirements.txt
 ```
 
 ### 3. Install Ollama
-TOSCheck runs best with [Ollama](https://ollama.ai) — your own mini LLM factory that keeps everything local.  
+TOSCheck runs best with [Ollama](https://ollama.ai).  
 Pull a model:
 ```bash
 ollama pull llama3
 ```
 
 **Hardware tip:** Run it on a GPU if you can.  
-If you use your CPU, your laptop might sound like it’s about to take off — which is fine if you miss flying.  
-(I have a love-hate relationship with flights, so hearing my fans spin at Mach 3 feels nostalgic.)  
+If you’re on CPU, expect your fans to go turbo. It still works — just slower.
 
 ### 4. Create your `.env`
 ```
@@ -185,12 +159,10 @@ If things get messy:
 rm -rf .ragcache kb_rag tos_rag
 ```
 
----
-
 ## FAQ
 
 **Does this replace a lawyer?**  
-No. It just helps you figure out what to ask a lawyer about — assuming you can afford one.
+No. It just helps you figure out what to ask a lawyer about, assuming you can afford one.
 
 **Will it make me $1000 for reading terms?**  
 Probably not. But it might save you from giving away the rights to your data, your ideas, and your soul.
@@ -224,10 +196,7 @@ But on real-world docs? It did surprisingly well. Like “wait, that actually wo
 
 **Why make this at all?**  
 Because people scroll through “I agree” like muscle memory, and companies count on that.  
-And it’s not just tech — people don’t read anything.  
-It’s the same energy as when someone brags, “DUDE, I got a good deal on a 2016 Audi RS4 — only $400 a month!”  
-Then you find out it’s for 84 months at 12% interest. You didn’t get a deal. You got a down payment plan.  
-People see a small number and stop asking questions — this project exists to make reading the details less painful before it bites you.
+People see a small number and stop asking questions, this project exists to make reading the details less painful before it bites you.
 
 **Can I contribute?**  
 Sure. PRs, issues, chaos welcome. If you break something, at least tell me how.
@@ -245,7 +214,7 @@ No, it’ll just silently judge you. Which hurts more.
 Yes. That’s actually where the real chaos hides.
 
 **Does it have plans for updates?**  
-Yeah — maybe prettier reports, more pattern types, maybe a UI if I get bored again, which I sincerley hope I dont.
+Yeah — maybe prettier reports, more pattern types, maybe a UI if I get bored again, which I sincerely hope I don’t.
 
 **Is this an “AI startup”?**  
 No. It’s not a company. It’s just a project that should’ve existed already.
@@ -255,16 +224,9 @@ Clarity.
 If one person stops and actually reads before hitting “I agree,” that’s a win.  
 If not, at least I read the terms this time.
 
----
-
 ## Final Note
 
-Also, yeah I didn’t name this some “AI” thing on purpose.  
-“AI” is overhyped and slapped on everything like hot honey right now.  
-It’s like someone made one good version of it and now people are putting it on pizza, fried chicken, coffee, everything.  
-Just because it’s good doesn’t mean it belongs in every single thing we touch.  
-
-This isn’t hype and it’s not pretending to be magic. It’s just a tool that reads the stuff nobody ever does.  
-Testing LLMs literally paid my bills junior year of college, but I still don’t think AI is the solution to everything.  
-
-This is just one small, grounded project that helps make sense of the fine print because someone had to build it.
+I didn’t name this something with “AI” on purpose. The word’s everywhere — on products that don’t need it.  
+TOSCheck isn’t hype or magic; it just reads what people don’t.  
+Testing LLMs paid my bills in Junior year of college, but even then I knew they weren’t the answer to everything.  
+This project’s small, local, and practical,  it exists because someone had to build it.
