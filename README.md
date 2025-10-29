@@ -273,7 +273,7 @@ It’s model-agnostic, so you can run it with any LLM connected through Ollama o
 ## FAQ
 
 **Does this replace a lawyer?**  
-No. It just helps you figure out what to ask a lawyer about — assuming you can afford one in this economy.
+No. It just helps you figure out what to ask a lawyer about, assuming you can afford one in this economy.
 
 **Will it make me $1000 for reading terms?**  
 Probably not. But it might save you from giving away the rights to your data, your ideas, and your soul. Small wins.
@@ -319,14 +319,14 @@ Like, “huh, that actually worked” levels of good.
 Because everyone scrolls through “I agree” like it’s a reflex, and companies count on that.  
 And honestly, it’s not just tech terms — people don’t read anything. Like, ever.  
 It’s the same energy as when someone gets “finessed” by a car dealership and brags,  
-“Bro, I got a good deal — only $400 a month!” and then you find out it’s for 84 months at 12% interest.  
-Like, dude… you didn’t get a deal, you got a payment plan for a down payment.  
+“DUDEEEE, I got a good deal on a 2016 Audi RS4, only $400 a month!” and then you find out it’s for 84 months at 12% interest.  
+Like, you didn’t get a deal, you got a payment plan for a down payment.  
 People just see a small number and stop asking questions. That’s kind of the whole point of this project — to make reading stuff less painful before it bites you.
 
 **Can I contribute?**  
 Sure thing.  
 Open a pull request, file an issue, or suggest a better name for half the functions.  
-If you break something, open an issue and tell me how — I’ll probably thank you for finding it.
+If you break something, open an issue and tell me how, I’ll probably thank you for finding it.
 
 **Will this ever have a UI?**  
 Maybe.  
@@ -384,7 +384,7 @@ If you’ve got ideas, drop them in Issues.
 **Is this one of those “AI-powered startups”?**  
 No.  
 This isn’t trying to be a company.  
-It’s just a project that should have existed already — built because I was tired of nobody reading the fine print.
+It’s just a project that should have existed already, built because I was tired of nobody reading the fine print.
 
 **What’s the real goal here?**  
 Just clarity.  
