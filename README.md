@@ -261,12 +261,12 @@ If not, at least I read the terms this time.
 
 ## Final Note
 
-This project isn’t meant to be a big deal. It’s just something small that probably should’ve existed already.  
-If it makes even one person stop and read before hitting “I agree,” it did its job.  
-And if not, at least this time I read the terms.
-
 Also, yeah I didn’t name this some “AI” thing on purpose.  
-“AI” is overhyped and slapped on everything like glitter on a school project.  
-This isn’t hype. It’s not pretending to be magic. It’s just a thing that reads the stuff nobody does.  
-Testing LLMs literally paid my bills junior year of college, but I still don’t think AI is a solution to everything.  
-This is just one small tool that helps make sense of the fine print — because someone had to build it.
+“AI” is overhyped and slapped on everything like hot honey right now.  
+It’s like someone made one good version of it and now people are putting it on pizza, fried chicken, coffee, everything.  
+Just because it’s good doesn’t mean it belongs in every single thing we touch.  
+
+This isn’t hype and it’s not pretending to be magic. It’s just a tool that reads the stuff nobody ever does.  
+Testing LLMs literally paid my bills junior year of college, but I still don’t think AI is the solution to everything.  
+
+This is just one small, grounded project that helps make sense of the fine print because someone had to build it.
