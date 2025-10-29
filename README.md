@@ -63,35 +63,113 @@ Everything here is CLI-based for now, and while it’s not *hard*, it definitely
 You can totally figure it out with some patience (and maybe an LLM holding your hand through it), but yeah — this is a dev-friendly zone for now.  
 If that ever changes, great. Until then, this one’s for people who don’t mind a terminal window.
 
-## How It Works
+## How It Works (Technical Overview)
 
-TOSCheck runs on a local Retrieval-Augmented Generation (RAG) pipeline. It takes a Terms of Service or Privacy Policy, breaks it into meaningful chunks, embeds them, and compares what it finds against a set of known legal risk patterns — all locally.
+TOSCheck runs on a local Retrieval-Augmented Generation (RAG) pipeline. It takes a Terms of Service or Privacy Policy, breaks it into meaningful pieces, embeds them, and uses a local model to compare what it finds against known legal risk patterns — all directly on your machine.
 
 ### 1. Text Extraction and Normalization
-Feed it a `.txt`, `.pdf`, or URL. The `read_text()` function cleans it up — removing junk and leaving clean, readable text ready for analysis.
+Feed it a text file, a PDF, or a URL.  
+`read_text()` handles the cleanup: removing junk, stripping formatting, and leaving behind clean, readable content.
 
 ### 2. Clause-Aware Chunking
-Instead of cutting text into random lengths, it splits at natural points (periods, semicolons, etc.), keeping meaning intact.
+Instead of chopping text into random parts, TOSCheck uses a custom chunker that understands clauses and sentence structure.  
+It splits where it makes sense — after punctuation, newlines, or long semicolons — so each chunk keeps its full meaning.
 
 ### 3. Embedding and Indexing
-Each chunk is embedded locally using `nomic-embed-text` via Ollama. Results go into `.ragcache` — keeping both your TOS embeddings (`tos_rag`) and the legal pattern knowledge base (`kb_rag`).
+Each chunk is embedded using `nomic-embed-text` through Ollama and stored in `.ragcache` for fast reuse.  
+Two embedding spaces are maintained:
+- **`tos_rag`** — embeddings for your document  
+- **`kb_rag`** — curated knowledge base of legal patterns (like Arbitration, Data Sharing, or Unilateral Changes)
 
 ### 4. Retrieval
-Each clause gets matched against known legal patterns via cosine similarity — if it says “You waive any right to a jury trial,” it maps to the Arbitration category instantly.
+Each clause is compared to the knowledge base using cosine similarity.  
+When something matches closely (e.g. “You waive any right to a jury trial”), it flags that clause as related to a known risk area.
 
 ### 5. Contextual Explanation
-The model summarizes each clause, labels risks (“Data Sharing,” “Arbitration,” etc.), and explains them in plain English.
+The matched clauses are then passed to a local or remote LLM, which:
+- Summarizes what the clause actually says in plain English  
+- Explains why it’s relevant or risky  
+- Labels it (like “Arbitration” or “Data Sharing”)  
+- Optionally adds a severity tag or score
 
-### 6. Dual-RAG Integration
-First pass: find legal patterns from the KB.  
-Second pass: find supporting context inside the same document.  
-That double grounding keeps explanations real and prevents hallucinations.
+### 6. Dual-RAG Reasoning
+This is where TOSCheck stands out.  
+It first retrieves matches from the legal pattern KB, *then* retrieves supporting context from the same document.  
+That double grounding keeps explanations accurate and cuts down on hallucination or overreach.
 
-### 7. Reporting
-You get both `report.md` and `report.json` with all flagged clauses, patterns, and summaries.
+### 7. Report Generation
+Once analysis is done, two reports are generated:
+- **Markdown (`.md`)** — readable summary with highlighted risks and explanations  
+- **JSON (`.json`)** — structured data for automation or integration into other tools
 
-### 8. Privacy-Safe
-No uploads, no hidden calls, no tracking. Runs fully local — or connect your own API key if you want to go cloud.
+### 8. Local by Default
+Everything happens locally — no uploads, no tracking, no hidden API calls.  
+If you want cloud inference, you have to opt in yourself. Otherwise, everything stays offline and private.
+
+---
+
+## System Flow
+
+TOSCheck runs like a pipeline — text goes in, insight comes out.
+
+1. **Input Layer** — handles `.txt`, `.pdf`, or URL input via `trafilatura`  
+2. **Normalization & Chunking** — cleans and segments content into meaningful clauses  
+3. **Embedding & Indexing** — converts chunks to vectors using `nomic-embed-text`  
+4. **Knowledge Base Comparison** — finds similar legal clauses using cosine similarity  
+5. **Dual-RAG Reasoning** — combines KB and document context for grounded explanations  
+6. **Report Generation** — outputs Markdown and JSON summaries
+
+---
+
+## System Architecture
+
+The architecture follows a simple but reliable structure:
+
+```
+User Input → Extractor → Chunker → Indexer → Retriever → Explainer → Reporter
+```
+
+Each module is independent and testable, making it easy to extend or replace parts of the pipeline.  
+For example, you can swap the embedding model, change the RAG cache path, or hook in a different LLM — all with environment variables.
+
+### Environment Configuration
+
+```
+MODEL=llama3
+EMBED_MODEL=nomic-embed-text
+RAG_CACHE_DIR=.ragcache
+```
+
+Optional (for cloud use):
+```
+OPENAI_API_KEY=sk-yourkey
+OPENAI_BASE_URL=https://api.openai.com/v1
+```
+
+### Cache Metadata
+
+Every run stores a lightweight `meta.json` in `.ragcache` to track:
+- Embedding model name and dimensions  
+- Hash of vector files  
+- Timestamp  
+- Version  
+
+If the system detects a mismatch, it’ll automatically re-index to stay consistent.
+
+---
+
+## System Flowchart
+
+Here’s how everything connects under the hood:
+
+<p align="center">
+  <img src="images/Diagram_for_TOS_Check.png" alt="TOSCheck System Flowchart" width="600"/>
+</p>
+
+---
+
+In short: TOSCheck is a clean, modular RAG stack that lives entirely on your machine.  
+No gimmicks — just a practical way to read what everyone else skips.
 
 ## Installation & Setup
 
