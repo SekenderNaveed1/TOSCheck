@@ -247,7 +247,7 @@ No, it’ll just silently judge you. Which hurts more.
 Yes. That’s actually where the real chaos hides.
 
 **Does it have plans for updates?**  
-Yeah — maybe prettier reports, more pattern types, maybe a UI if I get bored again.
+Yeah — maybe prettier reports, more pattern types, maybe a UI if I get bored again, which I sincerley hope I dont.
 
 **Is this an “AI startup”?**  
 No. It’s not a company. It’s just a project that should’ve existed already.
