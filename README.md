@@ -111,8 +111,10 @@ Once analysis is done, two reports are generated:
 - **JSON (`.json`)** — structured data for automation or integration into other tools
 
 ### 8. Local by Default
-Everything happens locally — no uploads, no tracking, no hidden API calls.  
-If you want cloud inference, you have to opt in yourself. Otherwise, everything stays offline and private.
+Everything happens on your machine — no uploads, no tracking, no surprise API calls.  
+If you add an API key or custom endpoint, those requests go wherever you point them.  
+By default, nothing leaves your system. That’s kind of the whole point.
+
 
 ---
 
