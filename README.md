@@ -245,7 +245,7 @@ No servers, no telemetry, no “research analytics.” Everything stays on your 
 
 **Can I run this without knowing how to code?**  
 Technically yes, practically no.  
-If you can type `python -m toscheck.app sample.txt`, you’re good.
+If you can type `python -m toscheck.app sample.txt` and actually know what you are doing, you’re good.
 
 **Why the name “TOSCheck”?**  
 Because everything cooler was taken. And I refused to name it something with “AI” in it.
@@ -260,11 +260,16 @@ Absolutely not. It just flags suspicious stuff so you can decide what actually m
 Nope. Everything happens locally.  
 If you drag your tax returns in here, that’s on you.
 
+##### Using an API key
+TOSCheck runs 100% locally by default.  
+If you add an `OPENAI_API_KEY` or any cloud endpoint in your `.env`, requests will go through that provider’s servers.  
+Your data then follows their Terms of Service, not this tool’s — so read them before you do.
+
 **How accurate is it?**  
-Pretty solid.  
-It’s not perfect, but it catches the big-ticket stuff — arbitration, vague language, “we may change these terms,” and data sharing.  
-I didn’t test it with F1 scores or benchmarks or any of that academic stuff, this isn’t a paper.  
-But on real-world docs? It did surprisingly well. Like “wait, that actually worked” levels of good.
+Pretty solid.
+It’s not perfect, but it catches the big-ticket stuff like arbitration, vague language, “we may change these terms,” and data sharing.
+I didn’t run formal benchmarks or F1 scores since this isn’t a research paper, just something built to work in practice.
+On real-world docs, it performed surprisingly well. The kind of “wait, that actually worked” level of good.
 
 **Why make this at all?**  
 Because people scroll through “I agree” like muscle memory, and companies count on that.  
@@ -277,7 +282,7 @@ Sure. PRs, issues, chaos welcome. If you break something, at least tell me how.
 Maybe. Right now, CLI only, fast, quiet, looks cool. A web UI might come later.
 
 **Can I use it at work?**  
-If your job lets you use open-source, yes. If not, maybe read the tech policy. (See? Reading helps.)
+If your job lets you use open-source, yes. If not, maybe read the acceptable use policy. (See? Reading helps.)
 
 **Will it yell at me for not reading the TOS?**  
 No, it’ll just silently judge you. Which hurts more.
@@ -286,7 +291,7 @@ No, it’ll just silently judge you. Which hurts more.
 Yes. That’s actually where the real chaos hides.
 
 **Does it have plans for updates?**  
-Yeah — maybe prettier reports, more pattern types, maybe a UI if I get bored again, which I sincerely hope I don’t.
+Probably. Cleaner reports, new pattern types, maybe a UI if I get restless again. Hopefully not anytime soon.
 
 **Is this an “AI startup”?**  
 No. It’s not a company. It’s just a project that should’ve existed already.
@@ -304,3 +309,5 @@ Testing LLMs paid my bills in Junior year of college, but even then I knew they 
 This project’s small, local, and practical,  it exists because someone had to build it.
 
 TOSCheck won’t save you in court, but hopefully you’ll never need to find out if a company’s fine print could’ve sent you there.
+
+If it ever does, at least you’ll know exactly which clause did it and point fingers.
