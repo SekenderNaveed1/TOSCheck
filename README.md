@@ -8,7 +8,9 @@ Most people don’t read the Terms of Service, even though that’s where compan
 
 TOSCheck exists to make that a little less painful. It scans Terms of Service and Privacy Policies, flags the parts that stand out, and explains them in plain language. The goal is simple: help people actually understand what they’re agreeing to.
 
-The idea came after reading about a chess player who won $1,000 just by reading the fine print everyone else ignored. Funny story, but also proof that nobody really reads this stuff, even when it matters.
+The idea came after seeing a YouTube short about someone who won $1,000 just by reading the fine print everyone else ignored.  
+Pretty sure most of you could beat me at chess anyway. I just saw the clip, not the board.  
+Funny story, but also proof that nobody really reads this stuff, even when it matters.
 
 I’ve built other projects before, like *Equigrade*, which tried to make grading fairer in education. It never took off, LLMs changed how classes worked, and professors moved on. TOSCheck comes from the same place, though: wanting to build tools that give people clarity and control.  
 
@@ -45,11 +47,20 @@ It looks for things like
 
 It doesn’t editorialize or moralize, it just points out the weird stuff so you can decide what matters.
 
-## PrivacyIt won’t save you in court — but hopefully you’ll never need to find out if a company’s fine print could’ve sent you there.
+## Privacy and Data Handling
+
+TOSCheck won’t save you in court, but hopefully you’ll never need to find out if a company’s fine print could’ve sent you there.
 
 No uploads. No tracking. No servers.  
 Everything runs entirely on your machine.  
-If you accidentally share something, that’s on you, not the app.
+If you accidentally share something, that’s on you, not the app.  
+
+#### Using an API key
+TOSCheck runs entirely on your machine by default. No uploads, no hidden calls, no servers.  
+If you add an `OPENAI_API_KEY` or any cloud endpoint in your `.env`, analysis requests will go through that provider’s servers.  
+At that point your data follows their Terms of Service, not this tool’s, so maybe let TOSCheck read their Terms before you trust them with yours.  
+Not sure how you’re gonna do that if you don’t have it set up yet, but that’s a problem for future you. Best of luck 🙂
+
 
 ## For Developers
 
@@ -255,16 +266,6 @@ Whatever you point it to — local via Ollama or API if you’re fancy. It doesn
 
 **Is this giving me legal advice?**  
 Absolutely not. It just flags suspicious stuff so you can decide what actually matters.
-
-**Does it store or send my data anywhere?**  
-Nope. Everything happens locally.  
-If you drag your tax returns in here, that’s on you.  
-
-#### Using an API key
-TOSCheck runs entirely on your machine by default. No uploads, no hidden calls, no servers.  
-If you add an `OPENAI_API_KEY` or any cloud endpoint in your `.env`, analysis requests will go through that provider’s servers.  
-At that point your data follows their Terms of Service, not this tool’s, so maybe let TOSCheck read their Terms before you trust them with yours.  
-Not sure how you’re gonna do that if you don’t have it set up yet, but that’s a problem for future you.
 
 **How accurate is it?**  
 Pretty solid.
