@@ -258,12 +258,13 @@ Absolutely not. It just flags suspicious stuff so you can decide what actually m
 
 **Does it store or send my data anywhere?**  
 Nope. Everything happens locally.  
-If you drag your tax returns in here, that’s on you.
+If you drag your tax returns in here, that’s on you.  
 
-##### Using an API key
-TOSCheck runs 100% locally by default.  
-If you add an `OPENAI_API_KEY` or any cloud endpoint in your `.env`, requests will go through that provider’s servers.  
-Your data then follows their Terms of Service, not this tool’s — so read them before you do.
+#### Using an API key
+TOSCheck runs entirely on your machine by default. No uploads, no hidden calls, no servers.  
+If you add an `OPENAI_API_KEY` or any cloud endpoint in your `.env`, analysis requests will go through that provider’s servers.  
+At that point your data follows their Terms of Service, not this tool’s, so maybe let TOSCheck read their Terms before you trust them with yours.  
+Not sure how you’re gonna do that if you don’t have it set up yet, but that’s a problem for future you.
 
 **How accurate is it?**  
 Pretty solid.
