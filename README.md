@@ -53,9 +53,6 @@ If you accidentally share something, that’s on you, not the app.
 
 ## For Developers
 
-If you’re reading this section, you probably already read GitHub’s API Terms before agreeing to them. Congratulations, you’re already ahead of 99% of people.  
-If you didn’t, that’s fine too. You’ll fit right in here.
-
 As of right now, I’d recommend this for people who are comfortable with the command line and know a bit of coding.  
 You don’t need to be some terminal wizard, but you should at least know how to `cd` into a folder without opening Stack Overflow.  
 
