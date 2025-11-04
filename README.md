@@ -45,7 +45,7 @@ It looks for things like
 
 It doesn’t editorialize or moralize, it just points out the weird stuff so you can decide what matters.
 
-## Privacy
+## PrivacyIt won’t save you in court — but hopefully you’ll never need to find out if a company’s fine print could’ve sent you there.
 
 No uploads. No tracking. No servers.  
 Everything runs entirely on your machine.  
@@ -203,7 +203,7 @@ EMBED_MODEL=nomic-embed-text
 RAG_CACHE_DIR=.ragcache
 ```
 If you want to use a cloud model:
-```
+```It won’t save you in court — but hopefully you’ll never need to find out if a company’s fine print could’ve sent you there.
 OPENAI_API_KEY=sk-yourkeyhere
 ```
 
@@ -239,9 +239,6 @@ rm -rf .ragcache kb_rag tos_rag
 **Does this replace a lawyer?**  
 No. It just helps you figure out what to ask a lawyer about, assuming you can afford one.
 
-**Will it make me $1000 for reading terms?**  
-Probably not. But it might save you from giving away the rights to your data, your ideas, and your soul.
-
 **Why does it run locally?**  
 Because privacy tools that send data away make zero sense.  
 No servers, no telemetry, no “research analytics.” Everything stays on your machine.
@@ -266,7 +263,7 @@ If you drag your tax returns in here, that’s on you.
 **How accurate is it?**  
 Pretty solid.  
 It’s not perfect, but it catches the big-ticket stuff — arbitration, vague language, “we may change these terms,” and data sharing.  
-I didn’t test it with F1 scores or benchmarks or any of that academic stuff — this isn’t a paper.  
+I didn’t test it with F1 scores or benchmarks or any of that academic stuff, this isn’t a paper.  
 But on real-world docs? It did surprisingly well. Like “wait, that actually worked” levels of good.
 
 **Why make this at all?**  
@@ -301,7 +298,9 @@ If not, at least I read the terms this time.
 
 ## Final Note
 
-I didn’t name this something with “AI” on purpose. The word’s everywhere — on products that don’t need it.  
+I didn’t name this something with “AI” on purpose. The word’s everywhere especially on products that don’t need it.  
 TOSCheck isn’t hype or magic; it just reads what people don’t.  
 Testing LLMs paid my bills in Junior year of college, but even then I knew they weren’t the answer to everything.  
 This project’s small, local, and practical,  it exists because someone had to build it.
+
+TOSCheck won’t save you in court, but hopefully you’ll never need to find out if a company’s fine print could’ve sent you there.
